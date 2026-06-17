@@ -139,6 +139,19 @@ Then spend most space on contribution:
 - `负责题目检索模块，基于 MySQL 索引和分页查询优化列表加载，减少大数据量下的查询等待。`
 - `设计用户权限校验流程，结合拦截器统一处理登录态和接口权限，降低重复鉴权代码。`
 
+## Labeled bullet pattern for Chinese AI resumes
+
+For dense Chinese programmer resumes, use bold labels to make bullets scannable:
+
+- `项目目标`: business scenario, target users, data scale, and system value
+- `核心职责`: personal ownership and delivery scope
+- `应用架构设计`: workflow, model/tool orchestration, service boundary, and tradeoffs
+- `检索增强/字段召回/模型优化`: the technical core, written with concrete methods
+- `评估与自修正闭环`: benchmark, error feedback, Bad Case loop, and measurable result
+- `服务封装与落地`: API packaging, deployment, integration, and reusable capability
+
+Use labels only when the bullet content is substantial. Do not decorate weak bullets with strong labels.
+
 ## Self-evaluation pattern
 
 Only include self-evaluation when backed by proof.

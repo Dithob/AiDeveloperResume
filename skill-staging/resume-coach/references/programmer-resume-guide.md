@@ -187,6 +187,20 @@ For AI-era summaries, express the target role with a credible AI angle when true
 
 `Java 后端开发（具备 AI Agent 应用开发经验）`
 
+## Strong AI/software resume patterns
+
+For AI application, algorithm, LLM, and full-stack AI roles, prefer a resume shape with:
+
+- Clear role positioning in personal information, such as `AI 应用开发`, `算法工程师`, or a backend role with a credible AI application angle.
+- Skill groups organized by capability rather than tool lists, for example `AI 应用开发`, `模型微调与推理优化`, `计算机基础与工程能力`, and `全栈与 AI 协作开发`.
+- Work bullets that start with a concise label such as `核心职责`, then cover the full delivery loop: requirements, data, model or RAG workflow, API design, testing, deployment, and joint debugging.
+- Project bullets split into `项目目标`, architecture or workflow design, retrieval/data/model details, and evaluation or closed-loop improvement.
+- Metrics tied to real verification, such as adoption rate, Hit Rate, execution success rate, QPS, latency, benchmark size, award level, or deployed usage.
+- Awards, certificates, and papers compressed into a short section after project experience unless they are the main selling point.
+- Optional self-evaluation removed unless it repeats evidence-backed strengths not already visible in projects.
+
+This pattern works because it shows not only technical vocabulary, but also ownership, engineering closure, evaluation discipline, and business relevance.
+
 ## Review rubric
 
 Use a 100-point score only when helpful:
