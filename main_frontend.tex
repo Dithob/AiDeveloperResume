@@ -1,0 +1,192 @@
+\documentclass[10pt]{article}
+
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{fontspec}
+\usepackage{fontawesome5}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fancybox}
+\usepackage{xeCJK}
+
+\hypersetup{hidelinks}
+\urlstyle{same}
+
+%%%%%%%%%%%%%%%%%%%%
+% 设置
+%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\pagenumbering{gobble}
+\setlist[itemize]{
+    leftmargin=1.35em,
+    itemsep=0.12em,
+    topsep=0.18em,
+    parsep=0pt,
+    partopsep=0pt
+}
+\setlist[enumerate]{leftmargin=*}
+\renewcommand{\arraystretch}{1.12}
+\linespread{1.08}
+
+\titleformat{\section}
+  {\Large\bfseries\raggedright}
+  {}{0em}
+  {}
+  [{\color{secondarycolor}\titlerule}]
+\titlespacing*{\section}{0pt}{0.55em}{0.28em}
+
+\usepackage[
+    a4paper,
+    left=1.1cm,
+    right=1.1cm,
+    top=0.75cm,
+    bottom=0.85cm,
+    nohead
+]{geometry}
+
+% 字体设置
+\setCJKmainfont[
+    Path=fonts/,
+    Extension=.otf,
+    BoldFont=*-Bold,
+]{NotoSerifSC}
+
+% 自定义颜色
+\definecolor{primarycolor}{RGB}{200, 60, 60}
+\definecolor{secondarycolor}{RGB}{200, 68, 28}
+
+\newlength{\iconwidth}
+\setlength{\iconwidth}{1.5em}
+
+%%%%%%%%%%%%%%%%%%%%
+% 文章内容
+%%%%%%%%%%%%%%%%%%%%
+
+% 联系方式
+\newcommand{\contact}{
+    \footnotesize
+    \textcolor{white}{
+        \faEnvelope \quad 邮箱：\href{mailto:xxx@qq.com}{250xxxxxxx@qq.com}
+        \hspace{3.2em}
+        \faPhone \quad 电话：198xxxxxxxx
+        \hspace{3.2em}
+        \faGithub \quad \href{https://github.com/Dithob}{github.com/Dithob}
+    }
+}
+
+\begin{document}
+
+    % 顶部联系人栏
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[anchor=north, inner sep=0pt](headercontacts) at (current page.north){
+            \includegraphics[width=\paperwidth]{images/foot.png}
+        };
+        \node[anchor=center] at(headercontacts.center){\contact};
+    \end{tikzpicture}
+    \vspace{-1.15em}
+
+    %%%%%%%%%%%%%%%%%%%%
+    % 个人信息与教育背景
+    %%%%%%%%%%%%%%%%%%%%
+
+    \begin{minipage}[t]{0.79\textwidth}
+        \section[个人信息]{\makebox[\iconwidth][c]{\color{primarycolor}{\faAddressCard}}\quad 个人信息}
+        {\small
+        \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lll}
+            \textbf{姓\qquad 名}：无绝 & \textbf{出生年月}：2002.10 & \textbf{求职方向}：前端开发 \\
+            \textbf{学\qquad 校}：重庆邮电大学 & \textbf{籍\qquad 贯}：湖北咸宁 & \textbf{学\qquad 历}：硕士在读
+        \end{tabular*}
+        }
+        \vspace{0.75em}
+
+        \section[教育背景]{\makebox[\iconwidth][c]{\color{primarycolor}{\faGraduationCap}}\quad 教育背景}
+        {\large \textbf{重庆邮电大学}}，计算机技术，\textit{硕士} \hfill 2024.09--2027.06
+        \begin{itemize}
+            \item \textbf{荣誉奖项}：特等学业奖学金 $\times$ 1、二等学业奖学金 $\times$ 1
+        \end{itemize}
+
+        \vspace{0.1em}
+        {\large \textbf{重庆邮电大学}}，计算机科学与技术，\textit{本科} \hfill 2020.09--2024.07
+        \begin{itemize}
+            \item \textbf{荣誉奖项}：三等学业奖学金；GPA: 3.28/4.0（专业前 25\%）
+        \end{itemize}
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.14\textwidth}
+        \vspace{-0.35em}
+        \setlength{\fboxsep}{0pt}
+        \doublebox{\includegraphics[width=\linewidth]{images/xjpic.jpg}}
+    \end{minipage}
+
+    \vspace{0.45em}
+
+    %%%%%%%%%%%%%%%%%%%%
+    % 专业技能
+    %%%%%%%%%%%%%%%%%%%%
+
+    \section[专业技能]{\makebox[\iconwidth][c]{\color{primarycolor}{\faWrench}}\quad 专业技能}
+    \begin{itemize}
+        \item \textbf{前端基础与框架}：熟悉 HTML5、CSS3、JavaScript、TypeScript，掌握 Vue3、Vuex/Pinia 等技术栈，能够完成页面组件化开发、状态管理、路由组织与复杂交互实现。
+        \item \textbf{组件与可视化}：熟悉 Ant Design Vue、Element 等组件库，能够封装表单、列表、弹窗、搜索筛选等通用业务组件；熟悉 ECharts，可实现基础数据看板与可视化展示。
+        \item \textbf{工程化与联调}：掌握 Git、Docker、Postman、JMeter、FoxAPI 等工具，熟悉前后端接口联调、请求/响应数据排查、环境部署与基础性能测试流程。
+        \item \textbf{后端与数据基础}：了解 Django、SpringBoot、MyBatis 等后端框架，掌握 MySQL、SQLite、Redis 的基本使用，能够参与接口设计、数据库建模和前后端数据流打通。
+        \item \textbf{AI 辅助开发}：熟悉 GitHub Copilot、Claude Code、Codex、Qoder 等 AI 编程工具，能够结合 AI 对话、SSE 流式响应和实时预览能力开发 AI 应用型前端项目。
+    \end{itemize}
+
+    \vspace{0.45em}
+
+    %%%%%%%%%%%%%%%%%%%%
+    % 实习经历
+    %%%%%%%%%%%%%%%%%%%%
+
+    \section[实习经历]{\makebox[\iconwidth][c]{\color{primarycolor}{\faBriefcase}}\quad 实习经历}
+
+    {\large \textbf{重庆啄木鸟网络科技有限公司 \quad 算法实习生（AI 应用研发）}} \hfill 2025.06--2025.09
+    \begin{itemize}
+        \item \textbf{核心职责}：参与 AI 应用研发，负责模型调研、工作流搭建、接口设计与测试、后端功能开发及前后端联调，参与智能产品识别、小啄 GPT 智能回复、Agent 文档解析与联网搜索等模块。
+        \item \textbf{智能家电识别与自动入库系统}：使用 Docker/Miniconda 统一部署 OCR/视觉大模型，接入 vLLM 优化推理服务；基于 Dify 搭建“识别--联网补全--字段校验--向量去重--入库”工作流，并通过接口封装为前端提供结构化产品信息、补全结果和去重结果数据。
+    \end{itemize}
+
+    \vspace{0.45em}
+
+    %%%%%%%%%%%%%%%%%%%%
+    % 项目经历
+    %%%%%%%%%%%%%%%%%%%%
+
+    \section[项目经历]{\makebox[\iconwidth][c]{\color{primarycolor}{\faProjectDiagram}}\quad 项目经历}
+
+    {\large \textbf{AI 驱动的低代码应用生成平台 \quad 项目负责人}} \hfill 2025.09--2025.12
+    \begin{itemize}
+        \item \textbf{项目介绍}：面向非技术用户的低代码平台，支持通过多轮 AI 对话生成 Web 应用，并提供实时预览、可视化编辑和状态管理能力，降低轻量应用搭建门槛。
+        \item \textbf{技术栈}：Vue3、TypeScript、Pinia、Ant Design Vue、SSE、AI。
+        \item \textbf{主要工作}：负责前端架构设计与核心功能开发，基于 Vue3 + TypeScript 组织页面、组件和状态模块；使用 Pinia 管理应用生成、实时预览与编辑状态；基于 SSE 接收 AI 生成过程中的流式内容，打通“对话生成--实时预览--可视化编辑”的核心链路；使用 Ant Design Vue 完成表单、操作面板和编辑区域等页面搭建。
+    \end{itemize}
+
+    \vspace{0.25em}
+
+    {\large \textbf{校园二手交易平台 \quad 项目负责人}} \hfill 2025.03--2025.06
+    \begin{itemize}
+        \item \textbf{项目介绍}：面向校园场景的二手商品交易平台，支持商品发布、浏览、搜索与交易流程，覆盖商品信息管理和用户交互等基础业务。
+        \item \textbf{技术栈}：HTML、CSS、JavaScript、Django、SQLite。
+        \item \textbf{主要工作}：负责前端页面设计与核心交互实现，完成商品列表、详情、发布和搜索等页面；基于响应式布局适配不同屏幕尺寸，使用 Django 模板实现页面动态渲染与组件复用；参与后端 API 设计与 SQLite 实体关系建模，打通商品数据展示、提交和查询流程。
+    \end{itemize}
+
+    \vspace{0.45em}
+
+    %%%%%%%%%%%%%%%%%%%%
+    % 奖项证书
+    %%%%%%%%%%%%%%%%%%%%
+
+    \section[奖项证书]{\makebox[\iconwidth][c]{\color{primarycolor}{\faTrophy}}\quad 奖项证书}
+    \begin{itemize}
+        \item \textbf{证书}：CET-6
+        \item \textbf{竞赛}：2025 “互联网+”大学生创新创业大赛银奖；2025 首届重庆市 AI 大模型创新应用大赛省级三等奖；2023 第十四届蓝桥杯 C/C++ 组省赛三等奖；2023 重庆市高校数据库应用竞赛校级二等奖
+    \end{itemize}
+
+\end{document}

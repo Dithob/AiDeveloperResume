@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resume Coach"
+  short_description: "Draft, review, and tailor resumes"
+  default_prompt: "Use $resume-coach to review my resume against a target job description."

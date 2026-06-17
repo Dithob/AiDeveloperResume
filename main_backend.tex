@@ -1,0 +1,217 @@
+\documentclass[11pt]{article}
+
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{fontspec}
+\usepackage{fontawesome5}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fancybox}
+\usepackage{xeCJK}
+
+\hypersetup{hidelinks}
+
+%%%%%%%%%%%%%%%%%%%%
+% 设置
+%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\parindent}{0pt}					% 取消全局段落缩进
+\pagenumbering{gobble}						% 取消页码显示
+\setlist[itemize]{nosep                     % 取消 itemize 的默认间距
+    , before={\vspace*{-\parskip}}          % 取消 itemize 和后续段落之间的空白
+    , leftmargin=*}                         % 取消 itemize 的左边距
+\setlist[enumerate]{leftmargin=*}           % 取消 enumerate 的左边距
+\renewcommand{\arraystretch}{1.2}           % 设置表格行间距
+\linespread{1.25}                           % 设置正文行间距
+
+\titleformat{\section}                      % 将原标题前面的数字取消了
+  % {\LARGE\bfseries\raggedright}             % 字体改为 LARGE，bold，左对齐
+  {\Large\bfseries\raggedright}             % 字体改为 LARGE，bold，左对齐
+  {}{0em}                                   % 可用于添加全局标题前缀
+  {}                                        % 可用于添加代码
+  [{\color{secondary_color}\titlerule}]     % 标题下方加一条线
+\titlespacing*{\section}{0cm}{*-2.5}{*1.0}    % 标题左边留白，上方，下方
+
+% ==========================================
+% 全局布局调整：
+% 缩小了 top 的值（从 1.5cm 改为了 0.8cm），让整体内容上移
+% ==========================================
+\usepackage[
+	a4paper,
+	left=1.2cm,
+	right=1.2cm,
+	top=0.8cm,      % <--- 调整了这个值，原来是 1.5cm
+	bottom=1cm,
+	nohead
+]{geometry}                                 % 页面边距设置
+
+% 字体设置
+% \setmainfont[
+\setCJKmainfont[
+    Path=fonts/,
+    Extension=.otf,
+    BoldFont=*-Bold,
+]{NotoSerifSC}
+
+% 自定义颜色
+\definecolor{primary_color}{RGB}{200, 60, 60}   % 松针绿
+\definecolor{secondary_color}{RGB}{200, 68, 28} % 金陵黄
+
+\newlength{\iconwidth}
+\setlength{\iconwidth}{1.5em}                   % 设置 section 标题部分图标占用的宽度
+
+%%%%%%%%%%%%%%%%%%%%
+% 文章内容
+%%%%%%%%%%%%%%%%%%%%
+
+% 联系方式
+\newcommand{\contact}{
+    \footnotesize           % 更小
+    \textcolor{white}{
+        % 邮箱
+        \faEnvelope \quad \href{mailto:xxx@qq.com}{250xxxxxxx@qq.com}
+        \hspace{4em}
+        % 手机号
+        \faPhone \quad  19823825660
+        \hspace{4em}
+        % 别的联系方式
+        \hspace{4em}
+        \faGithub \quad \href{https://github.com/Dithob}{https://github.com/Dithob}
+    }
+}
+
+\begin{document}
+
+    %%%%%%%%%%%%%%%%%%%%
+    % 页眉和布局修复
+    %%%%%%%%%%%%%%%%%%%%
+
+    % 将原本位于底部的联系人栏移动到顶部，作为新的页眉分隔符。
+    % 修复布局：移除原本的 \vspace{-6.5em}，调整顶部边距（通过geometry设置top=0.8cm）。
+    
+    % 顶部联系人栏
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[anchor=north, inner sep=0pt](header_contacts) at (current page.north){
+            \includegraphics[width=\paperwidth]{images/foot.png} % 使用原本的页脚图片作为横幅
+        };
+        % 联系方式
+        \node[anchor=center] at(header_contacts.center){\contact};
+    \end{tikzpicture}
+    % 这个vspace值需要根据顶部边距微调。现在的设置下，个人信息和横幅之间有2.5em的距离。
+    \vspace{-1.5em} 
+
+    %%%%%%%%%%%%%%%%%%%%
+    % 背景水印 (已去掉)
+    %%%%%%%%%%%%%%%%%%%%
+    
+    % \begin{tikzpicture}[remember picture, overlay]
+    %     \node[opacity=0.05] at(current page.center){
+    %         \includegraphics[width=0.7\paperwidth, keepaspectratio]{images/nbu_logo2.png}
+    %     };
+    % \end{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%
+    % 简历正文
+    %%%%%%%%%%%%%%%%%%%%
+
+    % 布局修复后的个人信息和照片
+    \begin{minipage}[t]{0.78\textwidth}
+        % 个人信息
+        \section[个人信息]{\makebox[\iconwidth][c]{\color{primary_color}{\faAddressCard}}\quad 个人信息}
+        \begin{minipage}[t]{0.5\textwidth}
+            \textbf{姓\qquad 名}：无绝
+            
+            \vspace{0.5em}
+            \textbf{学\qquad 校}：重庆邮电大学
+        \end{minipage}
+        \begin{minipage}[t]{0.35\textwidth}
+            \textbf{出生年月}：2002.10
+            
+            \vspace{0.5em}
+            \textbf{籍\qquad 贯}：湖北咸宁
+        \end{minipage}
+        \vspace{1.5em}
+
+        % 教育背景
+        \section[教育背景]{\makebox[\iconwidth][c]{\color{primary_color}{\faGraduationCap}}\quad 教育背景}
+        
+        {\large \textbf{重庆邮电大学}}，计算机技术，\textit{硕士} \hfill 2024.09--2027.06
+        \begin{itemize}
+            \item \textbf{荣誉奖项}：特等学业奖学金 $\times$ 1、二等学业奖学金 $\times$ 1 
+        \end{itemize}
+        
+        \vspace{0.3em}
+        {\large \textbf{重庆邮电大学}}，计算机科学与技术，\textit{本科} \hfill 2020.09--2024.07
+        \begin{itemize}
+            \item \textbf{荣誉奖项}：三等学业奖学金，GPA: 3.28/4.0 (专业前 25\%)
+        \end{itemize}
+        
+    \end{minipage}
+    \hfill
+    % 右半边，照片，比例占行宽20%
+    \begin{minipage}[t]{0.15\textwidth}
+        \vspace{-0.5em} 
+        \setlength{\fboxsep}{0pt}
+        \doublebox{\includegraphics[width=\linewidth]{images/xjpic.jpg}} % 使用内容代码中的照片文件名
+    \end{minipage}
+
+    %%%%%%%%%%%%%%%%%%%%
+    % 其他内容 (保持原样，替换内容)
+        % \vspace{-1.5em}
+        
+        
+        \vspace{1.2em}
+        
+        % 专业技能
+        \section[专业技能]{\makebox[\iconwidth][c]{\color{primary_color}{\faWrench}}\quad 专业技能}
+        \begin{itemize}
+        \setlength{\itemsep}{0.1em}
+            \item 熟悉数据结构、计算机网络、数据库等相关知识。掌握 MySQL、SQLite 与 Redis的使用方法，了解Redis常用的数据结构和持久化策略。了解Linux系统及基本使用方法。
+            \item 理解 Transformer 架构、向量数据库，熟悉主流大模型相关原理。熟悉 RAG、CoT 等相关技术；熟悉大模型常见微调方法（LoRA、SFT、PPO等），具备模型微调、推理优化、API 集成的实战经验。
+            \item 熟悉 Vue.js 渐进式框架及其技术生态(Vuex/Element等)；了解SpringBoot、Mybatis框架，有相关单体架构开发经验；掌握 Git、Docker 等项目工具；熟悉测试基础理论以及Postman、JMeter等测试工具的使用。
+            \item 理解 Harness Engineering 核心机制，熟悉 Open Claw、Hermes 等 AI Agent 的架构与原理；理解 Agent Memory 的设计实现，并了解 Skill Evolution策略；熟练应用 Claude Code、CodeX、Qoder 等 AI 辅助开发工具，具备丰富的 Vibe Coding 实践经验。
+            
+        \end{itemize}
+        
+        \vspace{1.2em}
+
+        % 实习经历
+        \section[实习经历]{\makebox[\iconwidth][c]{\color{primary_color}{\faBriefcase}}\quad 实习经历}
+        
+        {\large \textbf{重庆啄木鸟网络科技有限公司 \quad 算法实习生}} \hfill 2025.06--2025.09
+        \begin{itemize}
+            \item \textbf{核心职责}：参与算法研发，负责模型的调研、接口设计与测试、后端功能开发与优化。
+            \item \textbf{小啄 GPT 智能回复模型}：微调开源Qwen大模型，提高多轮对话场景的回复准确率、指令遵循率及回复多样性；设计对话状态标注体系与动态指令注入机制，实现模型对多轮对话流程的精确控制；构建知识库检索增强模块，采用混合检索策略动态注入商品信息与促销策略，增强模型回复多样性。
+            \item \textbf{基于大模型的智能家电识别与自动入库系统}：采用Docker、Miniconda进行OCR模型或视觉大模型环境隔离与统一部署，基于vLLM优化推理性能；通过Dify构建多Agent协同流程，使用文本大模型根据OCR识别内容与联网搜索插件提取并补充产品信息，结合Prompt工程与向量相似度匹配，实现数据去重与自动化入库，并使用FastAPI封装功能接口。
+        \end{itemize}
+        
+        \vspace{1.2em}
+        
+        % 项目经历
+        \section[项目经历]{\makebox[\iconwidth][c]{\color{primary_color}{\faProjectDiagram}}\quad 项目经历}
+        
+        {\large \textbf{智能数据分析问答助手（校企合作项目） \quad 项目主要成员}} \hfill 2025.10--2026.02
+        \begin{itemize}
+            \item \textbf{项目介绍}：以药品采购零售全链路数据为驱动，设计基于LLM的医药供应智能数据分析问答助手。
+            \item \textbf{技术栈}：MySQL、Dify、RAG、LangChain、Milvus、Prompt、CoT。
+            \item \textbf{主要工作}：负责应用架构设计与调优。基于Dify平台完成 LLM 工程化部署，并且结合RAG技术，构建外部知识库。通过样例对+思维链（CoT）等形式，提高 LLM 的上下文感知能力。设计基于规则的问题分类与人工反馈修正机制，提高文本转 SQL 的准确率，为销售人员提供高效准确的数据反馈。
+            \item \textbf{成果}：工程师招聘成本下降 10\% ，重庆市人工智能大赛市级银奖。
+        \end{itemize}
+        
+        \vspace{1.2em}
+        
+        % 学习成果
+        \section[奖项证书]{\makebox[\iconwidth][c]{\color{primary_color}{\faTrophy}}\quad 奖项证书}
+        \begin{itemize}
+            \setlength{\itemsep}{0.2em}
+            \item 证书：CET-6
+            \item 2025 “互联网+”大学生创新创业大赛（银奖）
+            \item 2025 中国国际大学生创新大赛产业赛道（校级二等奖）
+            \item 2025 首届重庆市 AI 大模型创新应用大赛（省级三等奖）
+            \item 论文：《LHAF: A Lightweight Hierarchical Adaptive Framework for LLM-based Multimodal Emotion Recognition in Conversations》 (SCI I区在投)
+        \end{itemize}
+
+\end{document}
