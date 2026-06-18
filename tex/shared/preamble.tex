@@ -1,0 +1,81 @@
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{fontspec}
+\usepackage{fontawesome5}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fancybox}
+\usepackage{xeCJK}
+
+\hypersetup{hidelinks}
+\urlstyle{same}
+
+%%%%%%%%%%%%%%%%%%%%
+% 设置
+%%%%%%%%%%%%%%%%%%%%
+
+\providecommand{\ResumeItemSep}{0.12em}
+\providecommand{\ResumeTopSep}{0.18em}
+\providecommand{\ResumeArrayStretch}{1.12}
+\providecommand{\ResumeLineSpread}{1.08}
+\providecommand{\ResumeSectionBefore}{0.55em}
+\providecommand{\ResumeSectionAfter}{0.28em}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\pagenumbering{gobble}
+\setlist[itemize]{
+    leftmargin=1.35em,
+    itemsep=\ResumeItemSep,
+    topsep=\ResumeTopSep,
+    parsep=0pt,
+    partopsep=0pt
+}
+\setlist[enumerate]{leftmargin=*}
+\renewcommand{\arraystretch}{\ResumeArrayStretch}
+\linespread{\ResumeLineSpread}
+
+\titleformat{\section}
+  {\Large\bfseries\raggedright}
+  {}{0em}
+  {}
+  [{\color{secondarycolor}\titlerule}]
+\titlespacing*{\section}{0pt}{\ResumeSectionBefore}{\ResumeSectionAfter}
+
+\usepackage[
+    a4paper,
+    left=1.1cm,
+    right=1.1cm,
+    top=0.75cm,
+    bottom=0.85cm,
+    nohead
+]{geometry}
+
+% 字体设置
+\setCJKmainfont[
+    Path=fonts/,
+    Extension=.otf,
+    BoldFont=*-Bold,
+]{NotoSerifSC}
+
+% 自定义颜色
+\definecolor{primarycolor}{RGB}{200, 60, 60}
+\definecolor{secondarycolor}{RGB}{200, 68, 28}
+
+\newlength{\iconwidth}
+\setlength{\iconwidth}{1.5em}
+
+\newcommand{\sectionicon}[2]{\makebox[\iconwidth][c]{\color{primarycolor}{#1}}\quad #2}
+
+\newcommand{\projectheading}[3]{%
+    \noindent\makebox[\textwidth][s]{%
+        \makebox[0pt][l]{{\large \textbf{#1}}}%
+        \hfill
+        \makebox[0pt][c]{{\normalsize \textbf{#2}}}%
+        \hfill
+        \makebox[0pt][r]{#3}%
+    }%
+}

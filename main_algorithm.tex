@@ -1,137 +1,22 @@
+% !TeX program = xelatex
 \documentclass[10pt]{article}
 
-\usepackage{hyperref}
-\usepackage{xcolor}
-\usepackage{calc}
-\usepackage{graphicx}
-\usepackage{tikz}
-\usepackage{fontspec}
-\usepackage{fontawesome5}
-\usepackage{titlesec}
-\usepackage{enumitem}
-\usepackage{fancybox}
-\usepackage{xeCJK}
-
-\hypersetup{hidelinks}
-\urlstyle{same}
-
-%%%%%%%%%%%%%%%%%%%%
-% 设置
-%%%%%%%%%%%%%%%%%%%%
-
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0pt}
-\pagenumbering{gobble}
-\setlist[itemize]{
-    leftmargin=1.35em,
-    itemsep=0.12em,
-    topsep=0.18em,
-    parsep=0pt,
-    partopsep=0pt
-}
-\setlist[enumerate]{leftmargin=*}
-\renewcommand{\arraystretch}{1.12}
-\linespread{1.08}
-
-\titleformat{\section}
-  {\Large\bfseries\raggedright}
-  {}{0em}
-  {}
-  [{\color{secondarycolor}\titlerule}]
-\titlespacing*{\section}{0pt}{0.55em}{0.28em}
-
-\usepackage[
-    a4paper,
-    left=1.1cm,
-    right=1.1cm,
-    top=0.75cm,
-    bottom=0.85cm,
-    nohead
-]{geometry}
-
-% 字体设置
-\setCJKmainfont[
-    Path=fonts/,
-    Extension=.otf,
-    BoldFont=*-Bold,
-]{NotoSerifSC}
-
-% 自定义颜色
-\definecolor{primarycolor}{RGB}{200, 60, 60}
-\definecolor{secondarycolor}{RGB}{200, 68, 28}
-
-\newlength{\iconwidth}
-\setlength{\iconwidth}{1.5em}
-
-\newcommand{\projectheading}[3]{%
-    \noindent\makebox[\textwidth][s]{%
-        \makebox[0pt][l]{{\large \textbf{#1}}}%
-        \hfill
-        \makebox[0pt][c]{{\normalsize \textbf{#2}}}%
-        \hfill
-        \makebox[0pt][r]{#3}%
-    }%
-}
+\input{tex/shared/preamble}
+\input{tex/data/profile}
+\input{tex/data/education}
 
 %%%%%%%%%%%%%%%%%%%%
 % 文章内容
 %%%%%%%%%%%%%%%%%%%%
 
-% 联系方式
-\newcommand{\contact}{
-    \footnotesize
-    \textcolor{white}{
-        \faEnvelope \quad 邮箱：\href{mailto:xxx@qq.com}{250xxxxxxx@qq.com}
-        \hspace{3.2em}
-        \faPhone \quad 电话：198xxxxxxxx
-        \hspace{3.2em}
-        \faGithub \quad 主页：\href{https://github.com/Dithob}{github.com/Dithob}
-    }
-}
+\newcommand{\ResumeTargetRole}{AI 应用开发}
+\input{tex/shared/components}
 
 \begin{document}
 
     % 顶部联系人栏
-    \begin{tikzpicture}[remember picture, overlay]
-        \node[anchor=north, inner sep=0pt](headercontacts) at (current page.north){
-            \includegraphics[width=\paperwidth]{images/foot.png}
-        };
-        \node[anchor=center] at(headercontacts.center){\contact};
-    \end{tikzpicture}
-    \vspace{-1.15em}
-
-    %%%%%%%%%%%%%%%%%%%%
-    % 个人信息与教育背景
-    %%%%%%%%%%%%%%%%%%%%
-
-    \begin{minipage}[t]{0.79\textwidth}
-        \section[个人信息]{\makebox[\iconwidth][c]{\color{primarycolor}{\faAddressCard}}\quad 个人信息}
-        % {\small
-        \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lll}
-            \textbf{姓\qquad 名}：无绝 & \textbf{出生年月}：2002.10 & \textbf{籍\qquad 贯}：湖北咸宁 \\
-            \textbf{学\qquad 校}：重庆邮电大学  & \textbf{英语水平}：CET-6 & \textbf{求职方向}：AI 应用开发
-        \end{tabular*}
-        % }
-        % \vspace{0.45em}
-
-        \section[教育背景]{\makebox[\iconwidth][c]{\color{primarycolor}{\faGraduationCap}}\quad 教育背景}
-        {\textbf{重庆邮电大学}}，计算机技术，\textit{硕士} \hfill 2024.09--2027.06
-        \begin{itemize}
-            \item \textbf{荣誉奖项}：特等学业奖学金 $\times$ 1、二等学业奖学金 $\times$ 1
-        \end{itemize}
-
-        \vspace{0.2em}
-        {\textbf{重庆邮电大学}}，计算机科学与技术，\textit{本科} \hfill 2020.09--2024.07
-        \begin{itemize}
-            \item \textbf{荣誉奖项}：三等学业奖学金；GPA: 3.28/4.0（专业前 25\%）
-        \end{itemize}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.14\textwidth}
-        \vspace{-0.35em}
-        \setlength{\fboxsep}{0pt}
-        \doublebox{\includegraphics[width=\linewidth]{images/xjpic.jpg}}
-    \end{minipage}
+    \ResumeContactBar
+    \ResumeProfileAndEducation
     % \vspace{0.45em}
 
     %%%%%%%%%%%%%%%%%%%%

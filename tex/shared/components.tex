@@ -1,0 +1,53 @@
+\providecommand{\ResumeTargetRole}{求职方向待定}
+
+\newcommand{\ResumeContact}{%
+    \footnotesize
+    \textcolor{white}{%
+        \faEnvelope \quad 邮箱：\href{mailto:\ResumeEmail}{\ResumeEmail}
+        \hspace{3.2em}
+        \faPhone \quad 电话：\ResumePhone
+        \hspace{3.2em}
+        \faGithub \quad 主页：\href{\ResumeHomepageUrl}{\ResumeHomepageLabel}
+    }%
+}
+
+\newcommand{\ResumeContactBar}{%
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[anchor=north, inner sep=0pt](headercontacts) at (current page.north){%
+            \includegraphics[width=\paperwidth]{\ResumeHeaderImage}
+        };
+        \node[anchor=center] at(headercontacts.center){\ResumeContact};
+    \end{tikzpicture}
+    \vspace{-1.15em}
+}
+
+\newcommand{\ResumeProfileSection}{%
+    \section[个人信息]{\sectionicon{\faAddressCard}{个人信息}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lll}
+        \textbf{姓\qquad 名}：\ResumeName & \textbf{出生年月}：\ResumeBirthDate & \textbf{籍\qquad 贯}：\ResumeHometown \\
+        \textbf{学\qquad 校}：\ResumeSchool & \textbf{英语水平}：\ResumeEnglishLevel & \textbf{求职方向}：\ResumeTargetRole
+    \end{tabular*}
+}
+
+\newcommand{\ResumeEducationSection}{%
+    \section[教育背景]{\sectionicon{\faGraduationCap}{教育背景}}
+    \ResumeEducationBlock
+}
+
+\newcommand{\ResumeProfileAndEducation}{%
+    %%%%%%%%%%%%%%%%%%%%
+    % 个人信息与教育背景
+    %%%%%%%%%%%%%%%%%%%%
+
+    \begin{minipage}[t]{0.79\textwidth}
+        \ResumeProfileSection
+
+        \ResumeEducationSection
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.14\textwidth}
+        \vspace{-0.35em}
+        \setlength{\fboxsep}{0pt}
+        \doublebox{\includegraphics[width=\linewidth]{\ResumePhoto}}
+    \end{minipage}
+}
