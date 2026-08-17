@@ -26,3 +26,8 @@ backup/
 .DS_Store
 Thumbs.db
 *.tmp
+
+# 本地真实个人信息（不提交，仅保留脱敏的 *.example 模板）
+tex/data/profile.tex
+tex/data/education.tex
+images/photo_mine.jpg

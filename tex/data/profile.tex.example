@@ -1,0 +1,12 @@
+% 通用个人信息模板：填写真实信息请复制本文件为 profile.tex（该文件已被 .gitignore 忽略，不会提交到仓库）。
+\newcommand{\ResumeName}{你的姓名}
+\newcommand{\ResumeBirthDate}{xxxx.xx}
+\newcommand{\ResumeHometown}{省 市}
+\newcommand{\ResumeSchool}{你的学校}
+\newcommand{\ResumeEnglishLevel}{CET-6}
+\newcommand{\ResumeEmail}{you@example.com}
+\newcommand{\ResumePhone}{1xx-xxxx-xxxx}
+\newcommand{\ResumeHomepageLabel}{github.com/yourname}
+\newcommand{\ResumeHomepageUrl}{https://github.com/yourname}
+\newcommand{\ResumePhoto}{images/xjpic.jpg}
+\newcommand{\ResumeHeaderImage}{images/foot.png}
