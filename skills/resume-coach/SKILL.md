@@ -1,6 +1,6 @@
 ---
 name: resume-coach
-description: Resume drafting, evaluation, rewriting, job-description tailoring, and LaTeX/XeLaTeX resume typesetting for software, technical, and Chinese programmer resumes. Use when Codex needs to create a resume from raw career facts, review or score an existing resume, optimize bullet points with truthful STAR/CAR framing, tailor a master resume to a target job description, extract resume keywords, improve ATS/JD match, prepare Chinese or English resume copy, generate PDF-ready LaTeX resume source, or advise on resume file naming, PDF/DOCX/Markdown/LaTeX content, section order, and interview-oriented resume strategy.
+description: Resume drafting, evaluation, rewriting, job-description tailoring, and LaTeX/XeLaTeX typesetting for software, technical, and Chinese programmer resumes. Use when the user wants to create a resume from raw career facts, review or score an existing resume, optimize bullet points with truthful STAR/CAR framing, tailor a resume to a target job description, extract resume keywords, improve ATS/JD match, prepare Chinese or English resume copy, generate PDF-ready LaTeX resume source, or decide on resume file naming, format, section order, and interview-oriented resume strategy.
 ---
 
 # Resume Coach
@@ -16,7 +16,7 @@ When important facts are missing, ask for the smallest set of targeted questions
 - For Chinese programmer resume standards, section weights, common mistakes, AI-era software resume guidance, and file-format conventions, read `references/programmer-resume-guide.md`.
 - For tailoring a master resume to a job description, keyword coverage, match scoring, ATS-style review, and gap analysis, read `references/jd-matching.md`.
 - For rewriting bullets, experience entries, project entries, summaries, and self-evaluation lines, read `references/rewrite-patterns.md`.
-- For LaTeX/XeLaTeX resume formatting, PDF-ready source generation, compact Chinese programmer layout, and reusable macros inspired by `main_algorithm.tex`, read `references/latex-resume-layout.md` and use `assets/latex/compact-ai-resume-template.tex` as the base template when helpful.
+- For LaTeX/XeLaTeX resume formatting, PDF-ready source generation, compact Chinese programmer layout, and reusable macros, read `references/latex-resume-layout.md` and use `assets/latex/compact-ai-resume-template.tex` as the base template when helpful.
 
 Load only the references needed for the current request.
 
