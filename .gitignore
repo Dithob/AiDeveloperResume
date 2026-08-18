@@ -1,8 +1,12 @@
 # Local package cache and private drafts
 .miktex/
+.workbuddy/
+.codebuddy/
 backup/
+history/
 
 # LaTeX build artifacts
+.output/
 *.aux
 *.bbl
 *.bcf
