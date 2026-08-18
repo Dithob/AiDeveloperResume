@@ -9,7 +9,7 @@
 % 文章内容
 %%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\ResumeTargetRole}{AI 应用开发}
+\newcommand{\ResumeTargetRole}{AI 应用开发（Agent 质量效能）}
 \input{tex/shared/components}
 
 \begin{document}
@@ -25,9 +25,9 @@
 
     \section[专业技能]{\makebox[\iconwidth][c]{\color{primarycolor}{\faWrench}}\quad 专业技能}
     \begin{itemize}
-        \item \textbf{AI 应用开发}：
+        \item \textbf{AI 应用开发（Agent 赋能）}：
         熟悉 Dify、LangChain 等 LLM 应用开发框架，能够围绕业务场景设计 RAG 问答、工具调用、多 Agent 协作与结构化输出流程，并使用 FastAPI 封装大模型服务接口；
-        理解 Harness Engineering、Agent Memory 等Agent核心机制，熟悉 Open Claw、Hermes 等 AI Agent 的架构与原理；熟练应用 Claude Code、Codex、Qoder 等 AI 编程工具。
+        理解 Harness Engineering、Agent Memory、MCP 协议、Skill/Subagent 编排等 Agent 核心机制，专注以 AI/Harness/Agent 为测试、QA 与需求推进赋能，构建“需求理解 $\rightarrow$ 用例生成 $\rightarrow$ 自动执行 $\rightarrow$ 失败自愈”的质量效能闭环；熟练应用 Claude Code、Codex、CodeBuddy 等 AI 编程工具。
         % \item \textbf{RAG 与检索增强}：熟悉文档 ETL、Chunk 切分、Embedding、Milvus 向量检索、BM25 关键词召回、RRF 融合与 Rerank 精排；能够构建知识库检索链路，并通过相似度阈值、拒答策略和 Bad Case 回流降低幻觉风险。
         \item \textbf{模型微调与推理优化}：
         理解 Transformer、自注意力 等底层架构原理；
@@ -51,6 +51,15 @@
 
     \section[实习经历]{\makebox[\iconwidth][c]{\color{primarycolor}{\faBriefcase}}\quad 实习经历}
 
+    \projectheading{腾讯地图}{AI 测试开发实习生（Agent 工程方向）}{2026.07--2026.10}
+    \begin{itemize}
+        \item \textbf{核心职责}：参与地图 AI Native 质量效能体系建设，负责 Agent 编排设计、Skill 工作流与 MCP 工具落地及业务域用例生成，以 AI/Harness/Agent 为测试提效与需求推进赋能，打通“需求理解 $\rightarrow$ 代码生成 $\rightarrow$ 审查修复 $\rightarrow$ 精准回归”全流程的工程化接入。
+        \item \textbf{Agent 设计与可靠性护栏}：参与 13 个 Skill 五层编排体系与 3 个自研 MCP 服务设计，落地 Given/When/Then 意图锁定、探索门禁、单步探针验证、九维度自审与探索预算人工接管等护栏机制，保障 LLM 规模化生成代码的质量与可控性。
+        \item \textbf{多 Agent 交叉检查与 Skill 评测}：使用多 Agent 交叉检查流程完成需求用例生成（多智能体独立生成 $\rightarrow$ 交叉比对合并，产出 85 条 P0/P1/P2 分级用例），设计人工复核口径标注 39 处待确认项，形成“AI 生成 + 人工质量判断”闭环；为地图数据查询、地图渲染两类 Skill 规划 120 条评测用例，覆盖能力调用、参数边界、异常输入与安全约束，将 Agent/Skill 能力验证结构化。
+    \end{itemize}
+
+    \vspace{0.25em}
+
     \projectheading{重庆啄木鸟网络科技有限公司}{算法工程师}{2025.06--2025.09}
     \begin{itemize}
         \item \textbf{核心职责}：参与家电售后场景的大模型应用研发，覆盖需求分析、数据清洗、模型调研与训练、Prompt/RAG 流程优化、接口设计与测试、FastAPI 服务封装及部署联调等环节。
@@ -72,6 +81,15 @@
 
     \section[项目经历]{\makebox[\iconwidth][c]{\color{primarycolor}{\faProjectDiagram}}\quad 项目经历}
     % AI 应用开发 / 大模型应用岗
+    \projectheading{LLM Agent 质量效能工程（腾讯地图）}{核心参与（Agent 编排落地）}{2026.07--2026.10}
+    \begin{itemize}
+        \item \textbf{项目概述}：基于 CodeBuddy（Skill + Subagent + MCP + Rules + Memory）构建 LLM Agent 质量效能体系，让大模型稳定完成“自然语言需求 $\rightarrow$ 可执行代码生成 $\rightarrow$ 真机执行 $\rightarrow$ 失败自愈 $\rightarrow$ 知识沉淀”的闭环，替代传统人工编写脚本模式，为测试与需求推进提效；覆盖 17 个业务域、600+ 生成代码单元。
+        \item \textbf{多 Agent 编排与可靠性设计}：按职责五层编排 13 个 Skill 与 3 个自研 MCP 服务；以 Given/When/Then 意图锁定防止模型为“跑通”而偷偷降标，探索门禁 + 单步验证 + 九维度自审控制生成质量，设置探索预算与人工接管机制实现人机协同止损，单任务生成约 10--15 分钟（人工需 1--2 小时）。
+        \item \textbf{RAG 与知识工程}：设计纯文件知识图谱（4 类节点 + 6 类边，按域加载降噪）与同源代码库静态推理（23 个仓库 UI 索引快照），让 Agent 生成前先检索理解研发代码；以 AST 三道闸扫描 1500+ 函数，结合 jieba + BM25 + 120+ 受控能力词表实现公共能力语义检索与自动沉淀，解决 LLM 规模化生成时“重复造轮子”问题。
+        \item \textbf{多模态感知与自愈闭环}：融合 UIAutomator XML / RapidOCR / OmniParser(YOLO) / OpenCV 模板四层感知，链式降级 + 命中率自适应排序解决无 resource-id 控件定位问题；失败后基于证据包（截图/trace/标注图）自动再生成补丁，形成 Self-heal 闭环；scrcpy 持久流将截图耗时由约 1s 降至 30--100ms。
+    \end{itemize}
+
+    \vspace{0.35em}
     \projectheading{基于 RAG 的医药数据分析问答助手}{项目主要成员}{2025.10--2026.02}
     % 算法 / NLP / LLM 工程岗
     % \projectheading{医药供应链 Text-to-SQL 数据分析助手（校企合作）}{项目主要成员}{2025.10--2026.02}
@@ -89,8 +107,9 @@
     \begin{itemize}
         \item \textbf{项目目标}：面向家电售后知识库建设场景，针对图片/OCR 识别信息不完整、长尾产品文本特征稀疏和重复入库问题，设计“识别--补全--校验--去重--入库”的自动化流程，降低人工录入和知识维护成本。
         \item \textbf{识别与字段补全}：使用 Docker/Miniconda 统一部署 OCR/视觉大模型环境，基于 Dify 编排“图片识别--联网搜索--字段抽取--置信度校验”多 Agent 流程；结合 Query Rewrite 和动态 Prompt 模板补全品牌、型号、规格、品类等产品字段。
-        \item \textbf{检索增强与数据去重}：将识别文本、产品字段和知识库摘要向量化，结合向量相似度匹配、规则校验和低置信字段二次补全判断是否重复入库，减少同一产品多版本记录造成的知识库污染。
-        \item \textbf{服务封装与落地}：接入 vLLM 优化模型推理服务，并使用 FastAPI 封装识别、补全、去重和入库接口，统一对外提供可复用能力，支撑商品手册、维修手册和客服知识库的持续更新。
+        % \item \textbf{检索增强与数据去重}：将识别文本、产品字段和知识库摘要向量化，结合向量相似度匹配、规则校验和低置信字段二次补全判断是否重复入库，减少同一产品多版本记录造成的知识库污染。
+        \item \textbf{服务封装}：接入 vLLM 优化模型推理服务，并使用 FastAPI 封装识别、补全、去重和入库接口，统一对外提供可复用能力，支撑商品手册、维修手册和客服知识库的持续更新。
+        \item \textbf{业务落地}：构建了 1000+ 类家电产品的自动入库工作流；通过向量匹配、规则校验和二次补全的去重策略，缓解了版本迭代导致的知识冗余，降低了人工录入与重复维护成本，为下游客服问答与检索系统搭建了高质量的数据基础。
     \end{itemize}
 
     % \vspace{0.35em}
