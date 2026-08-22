@@ -9,7 +9,7 @@
 % 文章内容
 %%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\ResumeTargetRole}{测试开发（AI 质量方向）}
+\newcommand{\ResumeTargetRole}{测试开发}
 \input{tex/shared/components}
 
 \begin{document}
@@ -24,10 +24,9 @@
 
     \section[专业技能]{\makebox[\iconwidth][c]{\color{primarycolor}{\faWrench}}\quad 专业技能}
     \begin{itemize}
-        \item \textbf{AI 应用质量保障（测 AI）}：理解 RAG、Prompt、Agent/Workflow、向量检索与 LLM API 集成，掌握模型评估基本方法；能构建 Golden Dataset 与 Bad Case 回流机制，设计幻觉、拒答、格式化输出校验和多轮对话回归测试集，以关键词、JSON Schema、相似度与规则断言实现批量自动校验。
-        \item \textbf{AI 辅助测试与研发（用 AI）}：有多 Agent 交叉检查用例生成、智能体用例更新与人工复核闭环的落地经验，熟悉 MCP 工具协议与 Skill/Subagent 编排（上下文隔离、探索预算、人工接管等护栏设计），理解 Agent 工作流与 Skill 的能力边界及安全约束验证方法；日常以 AI 编码助手为第一工具完成测试脚本、代码审查与文档沉淀，具备 AI Native 的工程习惯。
-        \item \textbf{测试分析与全流程}：熟练运用等价类、边界值、场景法、状态机、决策表与基于风险的测试（RBT）；熟悉需求评审、测试分析、用例编写与评审、提测执行、缺陷跟进、回归验证与测试报告全生命周期，熟练使用 TAPD、智研平台管理用例、缺陷与测试计划。
-        \item \textbf{自动化、性能与工程平台}：熟练使用 Python、Pytest、Requests、Playwright/Selenium、uiautomator2/ADB，熟悉 OpenCV/RapidOCR/YOLO 视觉感知与移动端 UI 自动化，能独立设计分层自动化框架与 JMeter/Locust 压测场景（QPS、P95、错误率分析）；掌握 Linux、Git、Docker、MySQL、Redis、FastAPI、Vue.js，了解 Jenkins/GitHub Actions CI 质量门禁与 Redis 队列异步调度。
+        \item \textbf{测试开发基础}：熟练运用等价类、边界值、场景法、状态机、决策表等测试设计方法；熟悉需求评审、用例评审、提测执行、缺陷跟进、回归验证等测试全流程；熟练使用 TAPD、智研平台管理用例与缺陷。
+        \item \textbf{工程与平台能力}：熟练使用 Python、Pytest、Requests 编写接口自动化，Playwright、Selenium、uiautomator2、ADB 编写 UI/移动端自动化，JMeter、Locust 编写性能压测；熟悉 Linux、FastAPI、MySQL、Docker、Git 等工程能力。
+        \item \textbf{AI 应用与测试能力}：理解 RAG、Harness、Memory 等 Agent 机制，熟悉 MCP、Skill、Subagent 等 Agent 工具框架，了解 Skill 等 AI 工具的能力边界及测试方法；能构建 Golden Dataset 与 Bad Case 回流闭环，设计幻觉、拒答、格式化、多轮回归等测试集，以关键词、JSON Schema、相似度、规则断言批量校验；有 Agent 用例自动更新与人工复核的落地经验，日常以 AI 编码助手完成测试脚本与代码审查。
     \end{itemize}
 
     % \vspace{0.35em}
@@ -38,22 +37,21 @@
 
     \section[实习经历]{\makebox[\iconwidth][c]{\color{primarycolor}{\faBriefcase}}\quad 实习经历}
 
-    \projectheading{腾讯地图}{QA 实习生}{2026.07--2026.10}
+    \projectheading{腾讯云与智慧产业研发公司}{测开实习生}{2026.06--2026.09}
     \begin{itemize}
-        \item \textbf{AI 用例生成工程化落地}：使用多 Agent 交叉检查流程生成「错必赔拓类」需求用例，多个智能体基于需求与历史用例独立生成后交叉比对合并，产出 85 条候选用例（主用例 54 + 次要 31，P0/P1/P2 分级）、高共识用例集与交叉检查报告；设计人工复核口径，逐项对照需求原文与业务链路核验并标注 39 处待确认项，形成可复用的“AI 生成 + 人工质量判断”闭环，并在 Knot 平台以智能体完成用例更新与复核改良。
-        \item \textbf{地图 Skill 与智能体评测}：为地图数据查询、地图渲染两类 Skill 规划 120 条评测用例，覆盖能力调用、参数边界、异常输入、结果校验与安全约束，将 Skill 能力验证转化为结构化测试任务；通过让 Agent 输出可观测工作流（解析需求、复用历史用例、差异比对、提炼测试点、自查规范）理解其生成机制，沉淀复核思路；学习缺陷逃逸分析的多智能体框架与 Spec 驱动测试左移实践。
-        \item \textbf{需求测试全流程}：独立完成「你用我赔/错必赔拓类」H5 需求的历史用例影响分析与测试分析，识别新手引导跨天状态机、重复进入、端外分享、埋点与兼容性风险，建立 R1--R8 风险确认清单并与产品/研发逐项对齐；按智研平台规范编写导入用例、为研发创建自测计划，补充遗漏场景用例并统一新旧文案口径。
-        \item \textbf{用例资产分析与灰度跟测}：对检索 264 条、打车 59 条真实用例做结构化归纳，建立业务维度、优先级分布与自动化率统计口径（如打车 P0 占 86\%、自动化率约 13.6\%），从“应拦截 vs 实际拦截”差距明确自动化补强方向；从 1442 条合格性全集中抽取灰度主流程 114 条（P0 占 72\%）整理为跟测清单并完成真机跟测；整理驾车路测三阶段 CheckList 与 Kuikly 跨端重构的灰度关注点。
+        \item \textbf{手机地图 UI 自动化测试 Agent}：参与腾讯地图 UI 自动化测试平台建设，负责 Agent 编排、Skill 与 MCP 工具落地，覆盖 17 个业务域、600+ 用例。
+        \item \textbf{多 Agent 交叉检查与 Skill 评测}：以多智能体独立生成、交叉比对合并产出 85 条分级用例，结合人工复核形成“AI 生成 + 人工判断”闭环；为地图数据查询、地图渲染两类 Skill 规划 120 条评测用例，沉淀 Agent/Skill 评测方法论。
+        \item \textbf{腾讯地图发版需求测试}：完成【你用我赔 H5】发版需求测试分析，识别跨天状态机、重复进入、端外分享、埋点与兼容性风险，建立 R1--R8 风险清单并与产品/研发逐项对齐；按智研平台规范编写用例、为研发创建自测计划。
     \end{itemize}
 
     \vspace{0.25em}
 
-    \projectheading{重庆啄木鸟网络科技有限公司}{算法实习生（AI 应用测试与交付）}{2025.06--2025.09}
-    \begin{itemize}
-        \item \textbf{核心职责}：负责大模型应用研发与交付验证，覆盖模型服务接口联调、Prompt/RAG 流程测试、功能冒烟与回归用例设计、接口异常排查和线上 Bad Case 分析，推动模型回复质量与服务稳定性优化。
-        \item \textbf{小啡 GPT 智能回复模型}：围绕家电客服多轮对话构建意图识别、槽位抽取、知识命中、指令遵循和结构化输出测试集；使用脚本批量调用模型 API，对回复做关键词、JSON Schema、相似度和规则断言校验，沉淀 100+ 条对话回归样例，定位上下文丢失、知识召回错误和格式漂移等问题。
-        \item \textbf{智能家电识别与自动入库系统}：针对 OCR/视觉大模型识别、联网补全、向量去重和入库链路设计接口测试与数据质量校验；构造正常、缺字段、重复商品、低置信度识别等场景，通过数据库断言验证字段完整性、去重结果和入库状态，提升交付前缺陷发现效率。
-    \end{itemize}
+    % \projectheading{重庆啄木鸟网络科技有限公司}{算法实习生（AI 应用测试与交付）}{2025.06--2025.09}
+    % \begin{itemize}
+    %     \item \textbf{核心职责}：负责大模型应用研发与交付验证，覆盖模型服务接口联调、Prompt/RAG 流程测试、功能冒烟与回归用例设计、接口异常排查和线上 Bad Case 分析，推动模型回复质量与服务稳定性优化。
+    %     \item \textbf{小啡 GPT 智能回复模型}：围绕家电客服多轮对话构建意图识别、槽位抽取、知识命中、指令遵循和结构化输出测试集；使用脚本批量调用模型 API，对回复做关键词、JSON Schema、相似度和规则断言校验，沉淀 100+ 条对话回归样例，定位上下文丢失、知识召回错误和格式漂移等问题。
+    %     \item \textbf{智能家电识别与自动入库系统}：针对 OCR/视觉大模型识别、联网补全、向量去重和入库链路设计接口测试与数据质量校验；构造正常、缺字段、重复商品、低置信度识别等场景，通过数据库断言验证字段完整性、去重结果和入库状态，提升交付前缺陷发现效率。
+    % \end{itemize}
 
     % \vspace{0.35em}
 
@@ -63,23 +61,21 @@
 
     \section[项目经历]{\makebox[\iconwidth][c]{\color{primarycolor}{\faProjectDiagram}}\quad 项目经历}
 
-    \projectheading{智能持续测试平台（接口/UI/性能一体化）}{独立设计与开发}{2025.10--2026.04}
+    \projectheading{智能持续测试平台}{独立设计与开发}{2025.10--2026.02}
     \begin{itemize}
-        \item \textbf{平台与框架设计}：基于 Python/Pytest/Requests 搭建五层接口自动化框架（配置、API 客户端、业务关键字、用例、报告），封装环境切换、Token 自动刷新、统一请求日志、公共断言、数据库校验与参数化数据驱动；以 Vue.js + FastAPI + MySQL + Redis + Docker 构建轻量测试平台，统一管理项目、用例、测试计划、任务记录与报告归档。
-        \item \textbf{契约与异常测试}：基于 OpenAPI/Swagger 文档自动生成契约用例，自动构造边界值、非法枚举、缺失必填字段和嵌套对象异常数据，覆盖状态码、响应 Schema、幂等性与业务错误码，输出失败接口的请求参数、响应体和可复现 curl。
-        \item \textbf{UI 自动化与性能压测}：基于 Playwright 落地 PO 模式核心业务用例，以智能等待与语义化定位器降低脚本脆弱性，集成 Trace、失败截图与视频录制支持全链路回放；使用 JMeter/Locust 设计登录鉴权、商品查询、订单提交等阶梯加压、稳定性与峰值压测场景，统计 QPS、P95、错误率并结合日志定位慢接口与缓存瓶颈。
-        \item \textbf{AI 增强与质量闭环}：将 Pytest/Playwright/Locust 执行入口封装为平台任务，经 Redis 队列异步调度并回收结果；引入 LLM 用例生成流水线，由需求/接口文档自动生成用例草稿、人工复核后入库，失败用例自动留存日志与 Bad Case；报告页聚合通过率、失败原因、耗时分布与历史趋势，形成“用例设计-自动执行-报告分析-缺陷回归”的质量闭环。
+        \item \textbf{平台与框架设计}：基于 Python/Pytest/Requests 搭建五层接口自动化框架，基于 OpenAPI 自动生成契约用例校验状态码、响应 Schema 与业务错误码；以 Vue.js + FastAPI + MySQL + Redis + Docker 构建轻量测试平台，统一管理项目与用例。
+        \item \textbf{UI 自动化与性能压测}：基于 Playwright 落地 PO 模式业务用例，集成 Trace、截图与录制支持回放；使用 JMeter/Locust 设计阶梯加压、稳定性与峰值压测，统计 QPS、P95、错误率并定位慢接口。
+        \item \textbf{AI 增强与质量闭环}：将 Pytest/Playwright/Locust 执行封装为平台任务，经 Redis 队列异步调度；引入 LLM 用例生成流水线（生成草稿、人工复核、留存 Bad Case）；报告页聚合通过率、失败原因与趋势，形成测试闭环。
     \end{itemize}
 
     \vspace{0.25em}
 
-    \projectheading{手机地图 UI 自动化平台（AI Agent）}{核心参与（框架建设）}{2026.07--2026.10}
+    \projectheading{腾讯地图 UI 自动化测试 Agent}{参与框架建设}{2026.06--2026.09}
     \begin{itemize}
-        \item \textbf{项目概述}：面向手机地图 Android 端复杂 UI 场景的智能体自动化测试体系，基于 CodeBuddy（Skill + Subagent + MCP + Rules + Memory）编排 13 个 Skill 与 3 个自研 MCP 服务，打通“需求理解 $\rightarrow$ 用例生成 $\rightarrow$ 审查调试 $\rightarrow$ 精准回归 $\rightarrow$ 平台回填”全生命周期，替代传统人工编写 Appium 脚本的模式；框架覆盖 17 个业务域、600+ 用例。技术栈：Python、uiautomator2、scrcpy、OpenCV、RapidOCR、OmniParser(YOLO)、jieba/BM25。
-        \item \textbf{智能体编排与生成工作流}：按需求理解、用例生成、质量保障、回归筛选、平台对接五层职责编排 Skill——联动 TAPD/Figma MCP 从需求自动生成 C1/C2/C3 分级文本用例、存量 xlsx 用例转 BDD；核心中枢三阶段生成可执行 case.py（锁定 Given/When/Then 防意图漂移 $\rightarrow$ 全链路探索门禁 + 逐步探针单步验证 + 九维度自审 $\rightarrow$ lint 与知识沉淀回填智研平台）；辅以 8 维度稳定性静态体检与代码 diff 驱动的 P0/P1/P2 精准回归圈选；设置探索预算与单次时长上限，超限自动调起人工录制 Skill 接管，形成“AI 提效 + 人工止损”的人机协同机制，单用例生成约 10--15 分钟（手写需 1--2 小时）。
-        \item \textbf{多 MCP 服务与感知定位引擎}：自研设备控制 MCP（17 个工具按准备/感知/决策/执行分组，支撑单步探针执行与截图/OCR/YOLO 并行感知）、线上批次失败诊断 MCP（按批次一键拉齐日志/截图/源码供 AI 根因分析），并接入腾讯地图官方 MCP 将地点名动态解析为坐标以构造 schema 跳转与测试数据；构建 XML/RapidOCR/OmniParser(YOLO)/模板匹配四层分级感知与 L1 $\rightarrow$ L3 链式降级定位 + 命中率自适应排序，解决自绘控件无 resource-id、动态页面与多分辨率适配的定位不稳定问题；scrcpy 持久流将截图耗时从约 1s 降至 30--100ms，支持多设备 session 隔离并行调试。
-        \item \textbf{知识工程与语义检索}：设计纯文件知识图谱（Page/Component/Pitfall/Operation 四类节点 + 6 类边，17 模块按域加载降噪，文件即真相源、git 可 review），并基于 23 个研发仓库的 UI 索引快照做同源静态推理，让 Agent 写用例前先“读懂”研发代码，产出页面跳转链与控件定位预测，低置信度条目诚实标注待实机校准；以 AST 三道闸（hash 主版本占比/依赖可解析性/模式纯度）扫描 1500+ 私有 helper，结合 jieba 分词 + BM25 + 120+ 受控能力词表实现公共方法两层沉淀与语义检索，弹窗/踩坑/锚点经验随执行自动回流复用。
-        \item \textbf{稳定性工程}：Lint 静态门禁禁止裸坐标、裸 sleep 等不稳定写法，每步强制后置断言，证据链全量落盘（before/after/verify 截图 + XML + trace + 标注图）支持失败回放与再生成修复；以 health.json 记录 10/30/100 次回测通过率，驱动用例生命周期（untested $\rightarrow$ active $\rightarrow$ stable/flaky）与 HTML 稳定性报告，单 case 耗时控制在 180s 内。
+        \item \textbf{智能体编排与用例生成}：构建智能体测试体系，编排 13 个 Skill 与 3 个自研 MCP 服务，打通需求理解到精准回归的全流程，覆盖 17 个业务域、600+ 用例；联动 TAPD/Figma 自动生成可执行 case.py，单用例生成约 10--15 分钟（手写需 1--2 小时）。
+        \item \textbf{MCP 工具开发与多模态感知}：自研设备控制与失败诊断 MCP，接入地图 MCP 解析地点坐标；融合 UIAutomator、OCR、OmniParser、OpenCV 四层感知，链式降级解决自绘控件无 resource-id 的定位问题；scrcpy 投屏将截图耗时从 1s 降至 30--100ms。
+        \item \textbf{知识工程与语义检索}：设计纯文件知识图谱（Page/Component/Pitfall/Operation 四类节点），基于 23 个研发仓库 UI 索引做静态推理，让 Agent 写用例前先读懂研发代码；以 AST 扫描 1500+ 私有 helper，结合 jieba + BM25 实现公共方法语义检索与经验复用。
+        \item \textbf{可靠性工程与自愈闭环}：以意图锁定、九维度自审与人工接管等护栏保障生成质量；Lint 门禁与逐步断言保证代码稳定，health 回测通过率淘汰 flaky 用例；失败后基于证据包自动再生成补丁形成自愈闭环。
     \end{itemize}
 
     % \vspace{0.35em}
@@ -90,7 +86,7 @@
 
     \section[在校成果]{\makebox[\iconwidth][c]{\color{primarycolor}{\faAward}}\quad 在校成果}
     \begin{itemize}
-        \item \textbf{竞赛}：2025 “互联网+”大学生创新创业大赛银奖；2025 中国国际大学生创新大赛产业赛道校级二等奖；2025 首届重庆市 AI 大模型创新应用大赛省级三等奖
+        \item \textbf{竞赛}：2025 “互联网+”创新创业大赛银奖；中国国际大学生创新大赛校级二等奖；重庆市 AI 大模型创新应用大赛省级三等奖
         \item \textbf{论文}：《LHAF: A Lightweight Hierarchical Adaptive Framework for LLM-based Multimodal Emotion Recognition in Conversations》（SCI I 区在投）
     \end{itemize}
 

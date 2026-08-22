@@ -1,14 +1,15 @@
 @echo off
 setlocal EnableDelayedExpansion
-:: 编译脚本：产物按模板分子目录放进 .preview\<模板名>\（已在 .gitignore 忽略），不污染仓库根目录。
-:: 用法：
-::   build.bat                          弹出菜单，选择编译一个模板（默认 main_algorithm）
-::   build.bat main_algorithm.tex       编译指定模板
-::   build.bat --all                    编译全部 main_*.tex
+rem Build script: outputs each template into .preview\<template-name>\ (already gitignored),
+rem keeping the repo root clean.
+rem Usage:
+rem   build.bat                         show menu, compile one template (default main_algorithm)
+rem   build.bat main_algorithm.tex      compile a specific template
+rem   build.bat --all                   compile all main_*.tex
 
 cd /d %~dp0
 
-:: 若 xelatex 不在 PATH，尝试常见 MiKTeX 安装路径（本机通常已在 PATH，这里做兜底）
+rem If xelatex is not on PATH, fall back to the common MiKTeX install location.
 where xelatex >nul 2>nul
 if errorlevel 1 (
     if exist "%LOCALAPPDATA%\Programs\MiKTeX\miktex\bin\x64" (
