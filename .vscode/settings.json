@@ -1,0 +1,52 @@
+{
+  // ===== LaTeX Workshop 实时预览配置 =====
+  // 效果：编辑 main_*.tex 时自动重新编译，右侧 PDF 标签页自动刷新（Overleaf 体验）
+
+  // 1) 编译产物按模板分子目录放到 .preview/<模板名>/（已在 .gitignore 忽略，不污染仓库）
+  "latex-workshop.latex.outDir": ".preview/%DOC%",
+
+  // 2) 实时自动编译：每次改动后 1.2s 防抖触发（接近 Overleaf 的 onType 体验）
+  "latex-workshop.latex.autoBuild.run": "onChange",
+  "latex-workshop.latex.autoBuild.interval": 1200,
+
+  // 3) 编译工具：直接用 xelatex（你没装 Perl，latexmk 不可用；简历无引用，两遍即可稳定）
+  "latex-workshop.latex.tools": [
+    {
+      "name": "xelatex-preview",
+      "command": "xelatex",
+      "args": [
+        "-interaction=nonstopmode",
+        "-synctex=1",
+        "-output-directory=.preview/%DOC%",
+        "%DOC%.tex"
+      ]
+    }
+  ],
+
+  // 4) 编译方案：XeLaTeX 跑两遍（解决交叉引用 / 目录等）
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "xelatex-preview",
+      "tools": [
+        "xelatex-preview",
+        "xelatex-preview"
+      ]
+    }
+  ],
+
+  // 5) 默认用上面的方案
+  "latex-workshop.latex.recipe.default": "xelatex-preview",
+
+  // 6) 关键：强制使用上面的默认 recipe，忽略 main_*.tex 里的 % !TeX program = xelatex 魔术注释
+  //    否则 LaTeX Workshop 会用内置的 xelatex 工具（无 -output-directory），导致产物落回根目录
+  "latex-workshop.latex.build.forceRecipeUsage": true,
+
+  // 7) PDF 在 VS Code 标签页内渲染（pdf.js），编译完成后自动刷新
+  "latex-workshop.view.pdf.viewer": "tab",
+
+  // 8) 关闭首次打开的冗长提示，保持清爽
+  "latex-workshop.message.banner": false,
+
+  // 9) 不做自动清理：latexmk 依赖 Perl，本机未装会报错；.preview/ 已 gitignore，残留 aux 无害
+  "latex-workshop.latex.autoClean.run": "never"
+}

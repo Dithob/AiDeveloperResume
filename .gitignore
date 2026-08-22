@@ -2,11 +2,14 @@
 .miktex/
 .workbuddy/
 .codebuddy/
-backup/
-history/
+.backup/
+# .history/
+.plan/
+.temptest/
 
 # LaTeX build artifacts
 .output/
+.preview/
 *.aux
 *.bbl
 *.bcf

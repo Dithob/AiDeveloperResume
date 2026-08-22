@@ -1,4 +1,4 @@
 interface:
   display_name: "Resume Coach"
   short_description: "Draft, review, tailor, and typeset resumes"
-  default_prompt: "Use $resume-coach to review my resume and typeset it as a polished LaTeX resume."
+  default_prompt: "使用 $resume-coach 评审我的简历，并排版为可编译的 LaTeX 简历。/ Review my resume and typeset it as a compilable LaTeX resume."

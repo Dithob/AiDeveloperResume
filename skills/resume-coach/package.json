@@ -1,0 +1,38 @@
+{
+  "name": "resume-coach-skill",
+  "version": "1.0.0",
+  "description": "AI Agent skill for resume drafting, review, scoring, JD tailoring, and XeLaTeX typesetting. CodeBuddy / Claude Code / npx skills compatible.",
+  "bin": {
+    "resume-coach-skill": "bin/install.js"
+  },
+  "files": [
+    "SKILL.md",
+    "references/",
+    "assets/",
+    "agents/",
+    "bin/"
+  ],
+  "scripts": {
+    "install:codebuddy": "node bin/install.js --target codebuddy",
+    "install:codebuddy:project": "node bin/install.js --target codebuddy:project",
+    "install:claude": "node bin/install.js --target claude",
+    "install:agents": "node bin/install.js --target agents"
+  },
+  "keywords": [
+    "resume",
+    "cv",
+    "skill",
+    "agent-skill",
+    "claude-skill",
+    "codebuddy",
+    "latex",
+    "xelatex",
+    "jd-matching",
+    "ats",
+    "ai"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

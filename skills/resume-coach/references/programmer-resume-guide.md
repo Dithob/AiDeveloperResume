@@ -203,6 +203,8 @@ This pattern works because it shows not only technical vocabulary, but also owne
 
 ## Review rubric
 
+Use this rubric for a general resume review when no specific JD is provided. For JD-specific match scoring, use the rubric in `jd-matching.md` instead.
+
 Use a 100-point score only when helpful:
 
 - Target-role clarity: 15

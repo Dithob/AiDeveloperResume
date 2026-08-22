@@ -1,6 +1,6 @@
 # AiDeveloperResume
 
-一套面向中文软件求职场景的 LaTeX 简历模板与简历优化资料库。仓库包含算法/AI 应用、Java 后端、前端开发、测试开发等岗位方向模板，也包含一个可用于简历撰写、评估、JD 匹配和 LaTeX 排版的 `resume-coach` skill 草稿。
+一套面向中文软件求职场景的 LaTeX 简历模板与简历优化资料库。仓库包含算法/AI 应用、Java 后端、前端开发、测试开发等岗位方向模板，并配套两个 AI Agent skill：`resume-coach`（通用简历撰写/评估/JD 匹配/LaTeX 排版方法论）与 `resume-project-workflow`（本项目专属的评分模型、优化方向与协作约束）。
 
 ![CV preview](./docs/CV-preview.jpg)
 
@@ -30,11 +30,14 @@ Copy-Item tex/data/education.tex.example tex/data/education.tex
 
 **必须在仓库根目录执行**——模板通过相对路径 `fonts/` 加载内置字体，进入子目录编译会报找不到字体。
 
-```bash
-# 编译算法 / AI 应用方向模板
-xelatex main_algorithm.tex
+> ⚠️ 默认编译会把所有副产物（`.pdf`/`.aux`/`.log`/`.out`/`.synctex.gz`）落在**当前目录**，污染仓库根目录。务必带上 `-output-directory=.preview/<模板名>`，统一按模板收进子目录（该目录已在 `.gitignore` 忽略）：
 
-# 如果安装了 latexmk，也可以直接使用仓库根目录的 .latexmkrc（已配置为 XeLaTeX）
+```bash
+# 编译算法 / AI 应用方向模板（产物进入 .preview/main_algorithm/）
+xelatex -output-directory=.preview/main_algorithm main_algorithm.tex
+xelatex -output-directory=.preview/main_algorithm main_algorithm.tex   # 再跑一遍，生成交叉引用
+
+# 如果已安装 latexmk（需要 Perl），也可用仓库根目录的 .latexmkrc，产物进入 .output/
 latexmk main_algorithm.tex
 ```
 
@@ -118,7 +121,50 @@ winget install StrawberryPerl
 
 ### 编辑器集成（可选）
 
-使用 VS Code 时，安装 **LaTeX Workshop** 扩展后打开任意 `main_*.tex`，点击编译按钮即可——模板首行的 `% !TeX program = xelatex` 魔术注释会自动指定 XeLaTeX 引擎，无需额外配置。
+#### VS Code + LaTeX Workshop 实时预览（推荐）
+
+本项目已在 `.vscode/settings.json` 中预置实时预览配置：**编辑即自动重编译，右侧 PDF 标签页自动刷新（Overleaf 体验），所有产物进入 `.preview/<模板名>/`，不污染根目录。**
+
+使用方法：
+
+1. **用「打开文件夹」方式打开整个仓库**（`File → Open Folder` → 选 `AiDeveloperResume`）。
+   ⚠️ 不要只双击打开单个 `.tex` 文件——那样 `.vscode/settings.json` 不会生效，产物会落回根目录。
+2. 安装 **LaTeX Workshop** 扩展（首次打开会自动提示）。
+3. 打开任意 `main_*.tex`，按 `Ctrl+Alt+B` 编译（或等自动编译触发），再按 `Ctrl+Alt+V` 打开 PDF，把 PDF 标签页拖到右侧即可左右分屏。
+4. 编译产物会自动进入 `.preview/<模板名>/`（例如 `.preview/main_algorithm/main_algorithm.pdf`），根目录保持干净。
+
+> `.vscode/settings.json` 中已设置 `latex-workshop.latex.build.forceRecipeUsage: true`，会忽略 `% !TeX program = xelatex` 魔术注释，强制使用仓库统一的 `xelatex-preview` recipe，确保产物始终进入 `.preview/<模板名>/`。
+
+#### 只在终端里手动编译（最可靠，不依赖插件）
+
+产物按模板分子目录，统一进 `.preview/<模板名>/`：
+
+```bash
+# 直接命令
+xelatex -output-directory=.preview/main_algorithm main_algorithm.tex
+xelatex -output-directory=.preview/main_algorithm main_algorithm.tex   # 再跑一遍
+```
+
+或一键脚本（仓库根目录已提供 `build.bat`，双击或在终端运行）：
+
+```bash
+build.bat                          # 弹出菜单，选择编译一个模板
+build.bat main_algorithm.tex       # 编译指定模板
+build.bat --all                    # 编译全部 main_*.tex
+```
+
+> 终端手动编译不经过 LaTeX Workshop 的 recipe 选择逻辑，因此不受 `% !TeX program` 魔术注释影响，稳定进入 `.preview/<模板名>/`。如果 VS Code 的 Build 按钮行为不稳定，直接用本方式即可。
+
+#### 如何实现 Overleaf 式"左边改、右边实时预览"
+
+1. 按上面方法编译一次，生成 `.preview/<模板名>/<模板名>.pdf`（例如 `.preview/main_algorithm/main_algorithm.pdf`）。
+2. 在 VS Code 中打开 `main_algorithm.tex`，按 `Ctrl+Alt+V` 打开 PDF 预览。
+3. 把 PDF 标签页拖到右侧（或右键 → Split Right），形成左右分屏。
+4. 以后修改 `.tex` 后：
+   - 如果开了 VS Code 自动编译且插件正常，1.2 秒后右侧 PDF 自动刷新；
+   - 如果插件按钮还是落根目录/不刷新，在终端跑 `build.bat main_algorithm.tex` 重新编译，右侧 PDF 也会检测到文件变化并自动刷新。
+
+> 核心原则：**编辑用 VS Code，编译用 `build.bat`/终端命令，预览用 VS Code 的 `Ctrl+Alt+V`**。这样既稳定，又能达到 Overleaf 的实时预览效果。
 
 ### 备选：Overleaf（不想装本地环境时）
 
@@ -160,8 +206,9 @@ winget install StrawberryPerl
 │       ├── profile.tex.example    # 姓名、邮箱、电话、学校、照片等（脱敏模板，复制为 profile.tex 使用）
 │       └── education.tex.example  # 通用教育背景（脱敏模板，复制为 education.tex 使用）
 ├── reference/                      # 简历素材、项目经历、复盘与参考模板
-└── skill-staging/
-    └── resume-coach/               # 简历撰写与优化评估 skill 草稿
+└── skills/                         # AI Agent skill（详见「Skills」章节）
+    ├── resume-coach/               # 通用简历撰写/评估/JD 匹配/LaTeX 排版
+    └── resume-project-workflow/    # 本项目专属：评分模型、优化方向、协作约束与编译预览
 ```
 
 ## 如何改成自己的简历
@@ -177,31 +224,70 @@ winget install StrawberryPerl
 
 ## 参考素材
 
-`reference/` 中的文件用于整理简历内容，不一定都适合直接放进最终简历：
+`reference/` 中的文件用于整理简历内容，不一定都适合直接放进最终简历，已按职责归档为子目录：
 
-- `Project_Experience_list.md`：项目经历素材清单
-- `Internship_Experience.md`：实习经历素材清单
-- `ai_developer_resume.md`：AI/后端方向简历样例素材
-- `Software_developer_resume.tex`：英文软件工程简历参考模板
-- `qwen_guid_review.md`：大模型相关简历素材、技术口径和面试复盘
+- `source/`：原始素材真相源（按人分组）
+  - `Project_Experience_list.md`：项目经历素材清单
+  - `Internship_Experience.md`：实习经历素材清单
+- `interview/`：面试复习
+  - `qwen_guid_review.md`：大模型简历素材、技术口径和面试复盘
+- `samples/`：参考样例
+  - `ai_developer_resume.md`：AI/后端方向简历样例（外部参考，非本人）
+  - `Software_developer_resume.tex`：英文软件工程简历参考模板
+- `projects/`：结构化项目库（按岗位分类，见 `projects/README.md`）
 
 建议把 `reference/` 当作候选素材库：先筛选与目标 JD 相关的事实，再压缩进对应岗位模板。
 
-## Resume Coach Skill
+## Skills（AI Agent 技能）
 
-`skill-staging/resume-coach/` 是一个用于 AI Agent 的简历优化 skill 草稿，包含：
+`skills/` 目录下提供两个配套简历工作流的 AI Agent skill：
+
+### resume-coach（通用简历方法论）
+
+`skills/resume-coach/` 是通用的简历撰写、评估、JD 匹配与 LaTeX 排版 skill，可复用于任意候选人/岗位：
 
 - `SKILL.md`：skill 入口说明和工作流
 - `references/`：程序员简历指南、JD 匹配、改写模式、LaTeX 排版规则
 - `assets/latex/compact-ai-resume-template.tex`：可复用的紧凑型中文 AI/软件岗简历模板
 - `agents/openai.yaml`：可选 agent 配置示例
 
-在支持 skills 的环境中，可以把 `skill-staging/resume-coach/` 安装或复制为 `resume-coach` skill 后使用。示例需求：
+#### 安装（详见 [skills/resume-coach/README.md](skills/resume-coach/README.md)）
+
+`resume-coach` 已封装为标准 npm 包，可通过 npx 安装；也可手动挂载到本项目的 CodeBuddy：
+
+```powershell
+# 方式一：安装脚本（挂到项目级 .codebuddy/skills/）
+node skills/resume-coach/bin/install.js --target codebuddy:project
+
+# 方式二：软链（改源自动生效，开发推荐）
+New-Item -ItemType Directory -Force .codebuddy/skills | Out-Null
+New-Item -ItemType Junction -Path .codebuddy/skills/resume-coach -Target (Resolve-Path skills/resume-coach)
+```
+
+### resume-project-workflow（本项目专属工作流）
+
+`skills/resume-project-workflow/` 沉淀自对本仓库的多次协作，固化本项目专属的约束与优化方向：
+
+- 协作硬约束：不覆盖根文件、改动只落 `.temptest/`、方案先放 `.plan/`、git 回退、编译产物只进 `.preview/`
+- 五维评分模型 + 4 点优化方向（Agent 岗锚点）
+- 项目抽库方法论与本地编译预览工作流
+
+挂载到本项目 CodeBuddy（软链，改源自动生效）：
+
+```powershell
+New-Item -ItemType Directory -Force .codebuddy/skills | Out-Null
+New-Item -ItemType Junction -Path .codebuddy/skills/resume-project-workflow -Target (Resolve-Path skills/resume-project-workflow)
+```
+
+> 挂载后重启/刷新会话，`/skills` 面板即可看到，任务匹配 `description` 时自动触发。`.codebuddy/` 已被 `.gitignore` 忽略，克隆后需重新挂载（或将该目录例外进版本管理）。
+
+示例需求：
 
 ```text
 请使用 resume-coach 评估 main_backend.tex 是否匹配 Java 后端实习岗位。
 请根据这份 JD 调整 main_algorithm.tex，保留真实事实，不新增未经确认的指标。
-请把 Project_Experience_list.md 中的项目压缩成一页中文简历项目经历。
+请把 source/Project_Experience_list.md 中的项目压缩成一页中文简历项目经历。
+请对 main_algorithm.tex 做五维评分，并按 4 点优化方向给出 Before→After 方案。
 ```
 
 ## 编译排错

@@ -60,6 +60,8 @@ Avoid:
 
 ## Match score
 
+Use this rubric only when scoring against a specific JD. For a general quality review without a JD, use the rubric in `programmer-resume-guide.md` instead.
+
 When scoring, use a transparent 100-point rubric:
 
 - Must-have coverage: 35

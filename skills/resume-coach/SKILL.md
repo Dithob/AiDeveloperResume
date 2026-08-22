@@ -1,6 +1,6 @@
 ---
 name: resume-coach
-description: Resume drafting, evaluation, rewriting, job-description tailoring, and LaTeX/XeLaTeX typesetting for software, technical, and Chinese programmer resumes. Use when the user wants to create a resume from raw career facts, review or score an existing resume, optimize bullet points with truthful STAR/CAR framing, tailor a resume to a target job description, extract resume keywords, improve ATS/JD match, prepare Chinese or English resume copy, generate PDF-ready LaTeX resume source, or decide on resume file naming, format, section order, and interview-oriented resume strategy.
+description: 简历撰写、评分、润色、岗位定制与 LaTeX/XeLaTeX 排版。当用户需要从零写简历、评审/打分/优化现有简历、按 STAR/CAR 改写 bullet、针对 JD 做关键词匹配与定制、提取简历关键词、提升 ATS 通过率、生成可编译 PDF 的 LaTeX 简历源码，或决定简历文件命名、格式、板块顺序与投递策略时使用。Resume drafting, review, scoring, JD tailoring, ATS optimization and LaTeX typesetting for programmer resumes, in Chinese or English.
 ---
 
 # Resume Coach
