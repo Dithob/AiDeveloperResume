@@ -114,73 +114,75 @@ main_*.tex（主稿，唯一编辑入口 / 真相源）
 
 ## Compile & Verify Commands
 
+统一编译入口固定从仓库根目录运行，不能把任意路径或任意命令参数传给 XeLaTeX：
+
 ```bash
-# 根变体编译（产物进 .preview/<模板名>，严禁裸跑污染根目录；跑两遍做交叉引用）
-xelatex -interaction=nonstopmode -synctex=1 -output-directory=.preview/main_algorithm main_algorithm.tex
-xelatex -interaction=nonstopmode -synctex=1 -output-directory=.preview/main_algorithm main_algorithm.tex
+# macOS / Linux：单遍快速预览
+./build.sh preview main_algorithm.tex
 
-# 在 .temptest 子文件夹编译（引用需重指向 ../../tex/）
-xelatex -output-directory=.temptest/algorithm -interaction=nonstopmode \
-  .temptest/algorithm/main_algorithm.tex
+# 双遍发布编译
+./build.sh release main_algorithm.tex
 
-# 路径重指向（用 Python 避免转义坑）
-python - <<'PY'
-for f in [".temptest/algorithm/main_algorithm.tex",
-          ".temptest/backend/main_backend.tex",
-          ".temptest/frontend/main_frontend.tex",
-          ".temptest/testdevelop/main_testdevelop.tex"]:
-    s = open(f, encoding="utf-8").read()
-    s = s.replace(r"\input{tex/", r"\input{../../tex/") \
-         .replace(r"\includegraphics{tex/", r"\includegraphics{../../tex/")
-    open(f, "w", encoding="utf-8").write(s)
-PY
+# 四个主稿批量发布
+./build.sh release --all
+
+# Windows 使用同一套 Python 逻辑
+build.bat preview main_algorithm.tex
+build.bat release --all
 ```
+
+- 预览产物进入 `.preview/<模板名>/`，发布产物进入 `.output/<模板名>/`。
+- 编译保留 `-synctex=1`、`-file-line-error`、`-halt-on-error` 和 `-no-shell-escape`；失败时保留日志。
+- PDF 与源码双向定位依赖 `.synctex.gz`：源码正向搜索和 PDF 反向搜索都以真实 `.tex` 行号为准。
+- 四个根目录主稿是唯一编辑入口；执行改造前后用 `git diff --exit-code HEAD -- main_*.tex` 确认未被意外改写。
+- `.vscode/settings.json` 只配置视觉软换行、自动预览和 SyncTeX，不引入 `tex-fmt`、`latexindent` 或保存时格式化。
+- `.temptest` 变体如需编译，仍需将其 `tex/` 引用重指向 `../../tex/`，但不得把编译产物写入根目录。
 
 - **文本等价校验**（重构后证明只搬家没改内容）：分别编译原版与新版 → `pdftotext -layout` 提取 → `diff` 比对（归一化空白）。4 变体曾验证逐字节一致。
 - **LaTeX 生成陷阱**：用 heredoc/Python 生成 `.tex` 时，`\vspace` 等可能变成 `0x0B` 控制符致编译失败；生成后用脚本把 `0x0B` 替换为 `backslash-v`。写文件优先用 Write 工具而非 echo/heredoc。
 - 仅有来自模板本身的 `\textit` 字体替换警告（非改动），不影响输出。
 
-## Local Preview & Compile（用户硬需求，2026-08-22 沉淀）
+## Local Preview & Compile（用户硬需求，2026-08-25 固化）
 
-凡涉及本地编译 / 预览，必须遵循（用户反复强调，曾因根目录被污染极度不满）：
+凡涉及本地编译 / 预览，必须遵循：
 
 ### 硬约束
 
-- **产物绝不污染根目录**：编译必须带 `-output-directory=.preview/<模板名>/`，严禁裸跑 `xelatex main_*.tex`。
-- **产物按模板分类**：`.preview/main_algorithm/`、`main_backend/`、`main_frontend/`、`main_testdevelop/`。
-- **VS Code Build 按钮不可信**：`main_*.tex` 首行 `% !TeX program = xelatex` 魔术注释会劫持 recipe，按钮编译会落根目录。优先 `build.bat` 或终端。
-- **不做自动清理**：本机无 Perl，`latexmk` 不可用，`autoClean` 须设 `never`。
-- **双击 PDF 跳回源码**：用内置 pdf.js 查看器（`Ctrl+Alt+V`），编译须带 `-synctex=1`。
+- 四个根目录 `main_*.tex` 是本地唯一编辑入口和事实源；本地发布副本不能反向覆盖主稿。
+- 长行只通过编辑器 `wordWrap`、`wrappingIndent` 和 `rulers` 视觉换行；真实换行、行号、Git diff 和 PDF 排版保持不变。
+- 产物按模板写入 `.preview/<模板名>/` 或 `.output/<模板名>/`，严禁裸跑 `xelatex main_*.tex` 污染根目录。
+- 预览保留 `.synctex.gz` 和 `.log`，不能为了速度删除 SyncTeX、错误日志或 `-halt-on-error`。
+- 只编译当前模板；四模板批量编译只用于发布验收，不进入自动热更新。
 
-### 最可靠编译方式（用户最终认可）
+### 统一入口
 
-终端（VS Code 集成终端 / PowerShell / CMD）跑上方 Compile & Verify 里的根变体命令（带 `-output-directory=.preview/<模板名>/`，跑两遍），换模板时把文件名与目录名一起改。
+- macOS/Linux：`./build.sh preview main_algorithm.tex`、`./build.sh release main_algorithm.tex`、`./build.sh release --all`。
+- Windows：`build.bat preview main_algorithm.tex`、`build.bat release main_algorithm.tex`、`build.bat release --all`。
+- `preview` 单遍 XeLaTeX 走热路径；`release` 双遍 XeLaTeX；两者都固定白名单、根目录和安全参数。
+- `build.sh`/`build.bat` 只负责平台入口，编译细节集中在 `scripts/build.py`，不再分别维护两套逻辑。
 
-### build.bat（仓库根目录，已提供）
+### VS Code 实时预览与双向定位
 
-- 双击 / 无参 → 弹菜单选单个模板（默认 1 = `main_algorithm`）。
-- `build.bat main_algorithm.tex` → 编译指定模板。
-- `build.bat --all` → 一次性编译全部 4 个。
-- 产物统一进 `.preview/<模板名>/`；脚本带「找不到 xelatex 补 MiKTeX 路径」兜底。
+1. 用 `File → Open Folder` 打开仓库并安装 LaTeX Workshop。
+2. 打开 `main_*.tex`，编辑器会显示视觉软换行；保存格式化和粘贴格式化均关闭。
+3. `.vscode/settings.json` 在停止输入约 800ms 后触发单遍预览；将 PDF 标签页 `Split Right`，形成左源码右 PDF。
+4. 从源码执行正向 SyncTeX，从 PDF 双击或执行 `Ctrl+Alt+J` 返回真实源码行。
+5. 停止输入后的热更新目标为 3 秒以内；首次 TeX 冷启动、字体加载和缓存耗时单独记录。
 
-### VS Code 实时预览（Overleaf 体验）
+### 踩坑清单
 
-1. `build.bat` 编译当前在改的模板（稳定，不经过插件 recipe）。
-2. VS Code 打开 `main_*.tex`，`Ctrl+Alt+V` 打开 PDF（内置 pdf.js 标签页）。
-3. PDF 标签页拖右侧 / `Split Right` → 左源码右 PDF。
-4. 改 `.tex` 重编，右侧 PDF 监测文件变化自动刷新。
-5. 双击 PDF 跳回 `.tex` 对应行（反向 `Ctrl+Alt+J`）。
+- 只打开单个 `.tex` 会跳过工作区设置；必须打开整个仓库。
+- `% !TeX program` 不是统一入口；需要稳定编译时优先使用 `build.sh`/`build.bat`。
+- 本地个人信息文件 `tex/data/profile.tex`、`tex/data/education.tex` 和个人照片被 Git 忽略，不能作为默认发布白名单的一部分。
+- `scripts/format_tex.py` 已移除；禁止引入会对主稿硬断行或保存时写回的格式化工具。
 
-`.vscode/settings.json` 要点：`outDir: .preview/%DOC%`、recipe `xelatex-preview`（`-output-directory=.preview/%DOC%` 跑两遍）、`forceRecipeUsage: true`（压魔术注释）、`autoClean.run: never`、`view.pdf.viewer: tab`。⚠️ 但用户实测按钮仍落根目录 → Agent 应**优先推荐终端 / build.bat**，别拍胸脯说「按钮肯定进 preview」。
+## Explicit Overleaf Publish（只发布，不反向同步）
 
-### 踩坑清单（必须避免）
-
-- `% !TeX program` 魔术注释优先级 > `recipe.default` → 产物落根目录；用 `forceRecipeUsage` 或干脆不用按钮。
-- 只双击打开单个 `.tex`（非 `File → Open Folder`）→ `.vscode/settings.json` 不生效 → 按钮退回默认 recipe。
-- 本机无 Perl → `latexmk` 命令不可用、`autoClean`（调 `latexmk -c`）必报错。装 Perl：`winget install StrawberryPerl`。
-- 裸跑 `xelatex main_*.tex` 必污染根目录。
-- `.latexmkrc` 是配置文件非副产物，别删（依赖 Perl 才有用）。
-- **行为教训（最重要）**：之前只验证「终端命令能进 preview」就断言「VS Code 配置好了自动进 preview」，没验证 GUI 按钮实际行为，被打脸。→ 涉及 VS Code 插件行为，**不能假设 recipe 一定被采用**；给保证前先验证实际 GUI 路径，或明确说「无法在这边点按钮验证，结论基于插件文档行为」。
+- 使用 `scripts/overleaf_publish.py`，隔离镜像固定为 `.overleaf-sync/repo/`，镜像远程别名为 `overleaf`。
+- 先无 `--push` 预览差异，只有明确传入 `--include-private --push` 才允许发布个人信息。
+- push 前检查远程领先状态、未知文件和目标分支；不强制推送，不把 GitHub `origin` 当作 Overleaf。
+- 没有 Git Integration 时使用 `--include-private --zip <path>` 生成白名单 ZIP，再手动上传；脚本会检查敏感文件边界。
+- Overleaf 评论、Track Changes 和在线修改不作为本地主稿输入；发生冲突时人工处理，不自动覆盖任何一侧。
 
 ### 备选：Docker 跑原版 Overleaf（需先装 Docker，当前未装）
 

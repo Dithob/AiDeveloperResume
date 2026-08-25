@@ -28,28 +28,30 @@ Copy-Item tex/data/education.tex.example tex/data/education.tex
 
 ### 第 1 步：编译
 
-**必须在仓库根目录执行**——模板通过相对路径 `fonts/` 加载内置字体，进入子目录编译会报找不到字体。
+**必须在仓库根目录执行**——模板通过相对路径 `fonts/` 加载内置字体。统一使用仓库脚本，避免把 `.pdf`、`.aux`、`.log` 和 `.synctex.gz` 污染到根目录；产物会按模板写入 `.preview/<模板名>/` 或 `.output/<模板名>/`，日志和 SyncTeX 文件会保留。
 
-> ⚠️ 默认编译会把所有副产物（`.pdf`/`.aux`/`.log`/`.out`/`.synctex.gz`）落在**当前目录**，污染仓库根目录。务必带上 `-output-directory=.preview/<模板名>`，统一按模板收进子目录（该目录已在 `.gitignore` 忽略）：
+脚本需要 Python 3 和 XeLaTeX：
 
 ```bash
-# 编译算法 / AI 应用方向模板（产物进入 .preview/main_algorithm/）
-xelatex -output-directory=.preview/main_algorithm main_algorithm.tex
-xelatex -output-directory=.preview/main_algorithm main_algorithm.tex   # 再跑一遍，生成交叉引用
+# macOS / Linux：停止输入后快速预览（单遍，适合日常编辑）
+./build.sh preview main_algorithm.tex
 
-# 如果已安装 latexmk（需要 Perl），也可用仓库根目录的 .latexmkrc，产物进入 .output/
-latexmk main_algorithm.tex
+# 发布编译（双遍，适合投递前确认）
+./build.sh release main_algorithm.tex
+
+# 批量发布编译四个模板
+python3 scripts/build.py release --all
 ```
 
-推荐使用 `latexmk`：仓库根目录的 `.latexmkrc` 已做如下自动化配置——
+Windows 使用同一套 Python 编译逻辑：
 
-- 全部产物输出到 `.output/` 目录（不会污染仓库根目录）；
-- 编译成功后 PDF 自动重命名为 `main_algorithm-YYYYMMDD.pdf`（带编译日期后缀，多次编译同一天覆盖、跨天归档）；
-- `.aux`、`.log`、`.xdv` 等其余中间副产物在编译结束后**自动删除**，`.output/` 里只保留 PDF。
+```powershell
+build.bat preview main_algorithm.tex
+build.bat release main_algorithm.tex
+build.bat release --all
+```
 
-注意：直接用 `xelatex main_algorithm.tex` 编译不走 `.latexmkrc`，产物会留在当前目录且不会自动清理；编译失败时 `latexmk` 会保留 `.output/` 中的 `.log` 等文件便于排错。
-
-可替换 `main_algorithm.tex` 为其他岗位模板：
+旧命令 `build.bat main_algorithm.tex` 仍兼容，默认执行 `release`。四个主稿可替换为：
 
 | 文件 | 适用方向 |
 | --- | --- |
@@ -58,17 +60,7 @@ latexmk main_algorithm.tex
 | `main_frontend.tex` | 前端开发、AI 产品前端、Web 应用开发 |
 | `main_testdevelop.tex` | 测试开发、AI 应用测试与交付 |
 
-批量编译全部模板：
-
-```bash
-# macOS / Linux（zsh、bash）
-for f in main_*.tex; do latexmk "$f"; done
-```
-
-```powershell
-# Windows（PowerShell）
-Get-ChildItem main_*.tex | ForEach-Object { latexmk $_.Name }
-```
+`preview` 只启动一遍 XeLaTeX，服务于热更新；`release` 启动两遍 XeLaTeX，服务于最终发布。脚本限制目标文件白名单，固定仓库根目录执行，并使用 `-synctex=1`、`-file-line-error` 与 `-no-shell-escape`。
 
 ## 本地编译方案
 
@@ -111,76 +103,84 @@ winget install MiKTeX.MiKTeX
 
 到 [tug.org/texlive](https://www.tug.org/texlive/) 下载安装器，包含全部宏包，安装耗时较长但后续无需补装。
 
-**关于 latexmk**：MiKTeX 环境下 `latexmk` 依赖 Perl。如果需要用 `latexmk` 批量编译，请先安装 Strawberry Perl：
-
-```powershell
-winget install StrawberryPerl
-```
-
-不想装 Perl 的话，直接用 `xelatex main_*.tex` 命令编译即可，效果完全一致。
+Windows 还需要 Python 3；安装后可用 `py -3 --version` 检查。日常预览和发布请使用 `build.bat`，不需要额外安装 Perl。
 
 ### 编辑器集成（可选）
 
 #### VS Code + LaTeX Workshop 实时预览（推荐）
 
-本项目已在 `.vscode/settings.json` 中预置实时预览配置：**编辑即自动重编译，右侧 PDF 标签页自动刷新（Overleaf 体验），所有产物进入 `.preview/<模板名>/`，不污染根目录。**
+本项目已在 `.vscode/settings.json` 中预置“左侧源码、右侧 PDF”的编辑体验：编辑停止约 800ms 后自动触发单遍 XeLaTeX，PDF 标签页自动刷新，预览产物进入 `.preview/<模板名>/`。
 
 使用方法：
 
-1. **用「打开文件夹」方式打开整个仓库**（`File → Open Folder` → 选 `AiDeveloperResume`）。
-   ⚠️ 不要只双击打开单个 `.tex` 文件——那样 `.vscode/settings.json` 不会生效，产物会落回根目录。
-2. 安装 **LaTeX Workshop** 扩展（首次打开会自动提示）。
-3. 打开任意 `main_*.tex`，按 `Ctrl+Alt+B` 编译（或等自动编译触发），再按 `Ctrl+Alt+V` 打开 PDF，把 PDF 标签页拖到右侧即可左右分屏。
-4. 编译产物会自动进入 `.preview/<模板名>/`（例如 `.preview/main_algorithm/main_algorithm.pdf`），根目录保持干净。
+1. 用 `File → Open Folder` 打开整个仓库，不要只打开单个 `.tex` 文件。
+2. 安装 **LaTeX Workshop**，打开任意 `main_*.tex`。
+3. 按 `Ctrl+Alt+V` 打开 PDF，将 PDF 标签页拖到右侧或执行 `Split Right`。
+4. 修改源码后等待自动编译；也可以运行 `build.bat preview main_algorithm.tex` 或 `./build.sh preview main_algorithm.tex`。
 
-> `.vscode/settings.json` 中已设置 `latex-workshop.latex.build.forceRecipeUsage: true`，会忽略 `% !TeX program = xelatex` 魔术注释，强制使用仓库统一的 `xelatex-preview` recipe，确保产物始终进入 `.preview/<模板名>/`。
+LaTeX 源码启用了编辑器显示层的视觉软换行：`wordWrap: bounded`、缩进换行和 100/120 列标尺。软换行不会写入真实换行符，不改变源码行号、Git diff、PDF 排版或 SyncTeX 映射；同时已关闭保存/粘贴格式化。停止输入后的热更新目标是 3 秒以内，首次 TeX 冷启动和字体缓存耗时需单独记录。
 
-#### 只在终端里手动编译（最可靠，不依赖插件）
+> `.vscode/settings.json` 使用 `latex-workshop.latex.build.forceRecipeUsage: true`，并保留 `-synctex=1`、`-file-line-error` 和 `-no-shell-escape`。如果插件行为异常，优先运行仓库脚本；脚本和插件都不会把产物写入根目录。
 
-产物按模板分子目录，统一进 `.preview/<模板名>/`：
+#### PDF 与源码双向定位
 
-```bash
-# 直接命令
-xelatex -output-directory=.preview/main_algorithm main_algorithm.tex
-xelatex -output-directory=.preview/main_algorithm main_algorithm.tex   # 再跑一遍
-```
+- 源码到 PDF：在源码中执行 LaTeX Workshop 的 `SyncTeX from cursor`，或使用对应的正向搜索命令。
+- PDF 到源码：在内置 PDF 预览中双击目标位置，或执行 `Ctrl+Alt+J`，跳回真实 `.tex` 行。
+- 视觉软换行产生的显示折行不是实际源码行，因此反向定位以文件真实行号为准。
+- `.preview/<模板名>/` 中保留 `.synctex.gz` 和 `.log`；编译失败时先查看日志，再定位源文件。
 
-或一键脚本（仓库根目录已提供 `build.bat`，双击或在终端运行）：
+#### 只在终端里手动编译
 
 ```bash
-build.bat                          # 弹出菜单，选择编译一个模板
-build.bat main_algorithm.tex       # 编译指定模板
-build.bat --all                    # 编译全部 main_*.tex
+./build.sh preview main_algorithm.tex   # 单遍快速预览
+./build.sh release main_algorithm.tex   # 双遍发布编译
+./build.sh release --all                # 四模板批量编译
 ```
 
-> 终端手动编译不经过 LaTeX Workshop 的 recipe 选择逻辑，因此不受 `% !TeX program` 魔术注释影响，稳定进入 `.preview/<模板名>/`。如果 VS Code 的 Build 按钮行为不稳定，直接用本方式即可。
+Windows 将 `./build.sh` 替换为 `build.bat`。脚本不接受任意路径，只允许四个白名单主稿，并固定从仓库根目录运行。
 
-#### 如何实现 Overleaf 式"左边改、右边实时预览"
+### 发布到 Overleaf（显式副本）
 
-1. 按上面方法编译一次，生成 `.preview/<模板名>/<模板名>.pdf`（例如 `.preview/main_algorithm/main_algorithm.pdf`）。
-2. 在 VS Code 中打开 `main_algorithm.tex`，按 `Ctrl+Alt+V` 打开 PDF 预览。
-3. 把 PDF 标签页拖到右侧（或右键 → Split Right），形成左右分屏。
-4. 以后修改 `.tex` 后：
-   - 如果开了 VS Code 自动编译且插件正常，1.2 秒后右侧 PDF 自动刷新；
-   - 如果插件按钮还是落根目录/不刷新，在终端跑 `build.bat main_algorithm.tex` 重新编译，右侧 PDF 也会检测到文件变化并自动刷新。
+本地四个 `main_*.tex` 是唯一编辑入口；Overleaf 只接收明确生成的发布副本，不与本地同时维护第二份主稿。`scripts/overleaf_publish.py` 默认只做准备或 ZIP，不会自动提交、推送，也不会把 GitHub `origin` 当作 Overleaf 远程。
 
-> 核心原则：**编辑用 VS Code，编译用 `build.bat`/终端命令，预览用 VS Code 的 `Ctrl+Alt+V`**。这样既稳定，又能达到 Overleaf 的实时预览效果。
+#### 有 Overleaf Git Integration 时
 
-### 备选：Overleaf（不想装本地环境时）
+隔离镜像目录为 `.overleaf-sync/repo/`，其远程别名固定为 `overleaf`：
 
-把整个仓库打包上传 [Overleaf](https://www.overleaf.com) 也可以编译，注意两点：
+```bash
+# 首次使用：把 Integrations → Git 中的地址放入隔离镜像
+python3 scripts/overleaf_publish.py --init "<OVERLEAF_GIT_URL>"
 
-1. 打开左上角 `Menu`，把 `Compiler` 设置为 `XeLaTeX`。如果日志第一行出现 `This is pdfTeX` 或 `preloaded format=pdflatex`，说明仍在使用 pdfLaTeX，中文字体宏包会直接报错。
-2. Overleaf 项目里同样需要 `tex/data/profile.tex` 和 `tex/data/education.tex`——上传后按「第 0 步」把两个 `*.example` 文件重命名（去掉 `.example` 后缀）即可。
+# 先查看白名单文件和镜像差异，不推送
+python3 scripts/overleaf_publish.py --include-private
+
+# 确认后才提交并推送；个人信息必须显式允许
+python3 scripts/overleaf_publish.py --include-private --push \
+  --message "publish resume templates"
+```
+
+脚本会检查远程是否领先本地、只允许 `main`/`master`、拒绝强制推送，并在镜像存在未知文件变更时停止。远程领先时应先人工在 Overleaf 检查，再在镜像中处理冲突；不要从 Overleaf 反向覆盖本地主稿。访问令牌不应写入脚本、仓库或日志。
+
+#### 没有 Git Integration 时：生成 ZIP
+
+免费账号或没有 Git Integration 时，直接生成白名单 ZIP，不需要初始化镜像：
+
+```bash
+python3 scripts/overleaf_publish.py --include-private \
+  --zip .overleaf-sync/resume-upload.zip
+```
+
+将 ZIP 手动上传到 Overleaf 后，在 `Menu → Compiler` 选择 `XeLaTeX`。`--include-private` 会把本地 `profile.tex`、`education.tex` 和实际使用的个人照片放进被忽略的隔离目录或临时 ZIP；默认不读取这些文件。上传前请检查 ZIP 清单，上传后也应确认项目权限、共享链接和评论内容没有暴露不必要的个人信息。
 
 ## 环境要求
 
+- Python 3（用于 `scripts/build.py` 和 `scripts/overleaf_publish.py`）
 - TeX 发行版（任选其一）：
   - macOS：MacTeX（推荐）或 BasicTeX + `tlmgr` 补装宏包
   - Windows：MiKTeX（推荐）或 TeX Live
 - XeLaTeX 引擎
 - 常用宏包：`fontspec`、`xeCJK`、`fontawesome5`、`titlesec`、`enumitem`、`tikz`、`hyperref`、`fancybox`、`geometry`
-- 可选工具：`latexmk`（配合仓库根目录的 `.latexmkrc` 使用）。在 Windows + MiKTeX 环境中，`latexmk` 可能还需要 Perl；如果未安装 Perl，请直接使用 `xelatex` 命令编译。
+- `latexmk` 仅作为历史兼容工具，不是本项目预览或发布流程的必需依赖；统一入口不会依赖 Perl。
 
 如果 `fontawesome5` 缺失，请用你的 TeX 发行版包管理器安装：macOS 执行 `sudo tlmgr install fontawesome5`，Windows 在 MiKTeX Console 中安装或开启自动安装。
 
@@ -192,8 +192,14 @@ build.bat --all                    # 编译全部 main_*.tex
 ├── main_backend.tex                # Java 后端方向简历模板
 ├── main_frontend.tex               # 前端方向简历模板
 ├── main_testdevelop.tex            # 测试开发方向简历模板
-├── .latexmkrc                      # latexmk 配置：XeLaTeX + 输出到 .output/ + PDF 日期后缀 + 自动清理副产物
-├── .output/                        # latexmk 编译输出目录（git 忽略，仅保留带日期后缀的 PDF）
+├── .vscode/settings.json           # 视觉软换行、LaTeX Workshop 自动预览与 SyncTeX
+├── build.bat / build.sh            # Windows 与 macOS/Linux 入口
+├── scripts/build.py                # 统一 preview/release/--all 编译逻辑
+├── scripts/overleaf_publish.py     # 隔离 Overleaf 发布或白名单 ZIP
+├── .preview/                       # 快速预览输出（git 忽略）
+├── .output/                        # 发布输出（git 忽略）
+├── .overleaf-sync/                 # 隔离镜像与 ZIP（git 忽略）
+├── .latexmkrc                      # 历史兼容配置，不是默认入口
 ├── docs/
 │   └── CV-preview.jpg              # 简历预览图
 ├── fonts/                          # 内置 Noto Serif SC 字体
@@ -217,7 +223,7 @@ build.bat --all                    # 编译全部 main_*.tex
 2. 修改 `tex/data/profile.tex` 中的姓名、邮箱、电话、GitHub、学校和照片路径。
 3. 修改 `tex/data/education.tex` 中的教育背景。
 4. 在对应 `main_*.tex` 中修改 `\ResumeTargetRole`、专业技能、实习经历、项目经历和成果奖项。
-5. 替换 `images/xjpic.jpg` 为自己的照片，或在 `tex/data/profile.tex` 中改成新的照片路径。
+5. 将自己的照片放在本地 `images/`，并在 `tex/data/profile.tex` 中修改 `\ResumePhoto` 路径；`profile.tex` 和个人照片不会提交到 Git。
 6. 编译并检查 PDF：中文换行、日期格式、技术名词大小写、链接是否可点击。
 
 写入正式简历前，请确认所有项目指标、获奖、论文、上线情况和链接都能经得起面试追问。本仓库中的素材强调“真实事实 + 清晰表达”，不建议虚构经历或不可验证的量化结果。
@@ -292,18 +298,18 @@ New-Item -ItemType Junction -Path .codebuddy/skills/resume-project-workflow -Tar
 
 ## 编译排错
 
-- 请使用 `xelatex`，不要用默认 `pdflatex` 编译中文模板。
+- 请使用仓库的 `build.sh`/`build.bat` 或 `scripts/build.py`，不要直接裸跑 `xelatex main_*.tex`；中文模板不能使用默认 `pdflatex`。
 - 报错 `tex/data/profile.tex not found`：首次克隆未执行「第 0 步」，先复制 `*.example` 文件。
-- 报错找不到 `fonts/NotoSerifSC.otf` 字体：不在仓库根目录执行了编译。字体通过相对路径 `fonts/` 加载，请回到根目录重试。
+- 报错找不到 `fonts/NotoSerifSC.otf` 或 `images/foot.png`：脚本会在编译前提示缺失文件，请确认当前命令从仓库根目录执行。
 - 提示 `fontawesome5.sty not found` 等宏包缺失：macOS 执行 `sudo tlmgr install <宏包名>`；Windows 在 MiKTeX Console 中安装，或开启缺包自动安装。
-- 如果提示找不到图片，确认 `images/foot.png`、`images/xjpic.jpg` 等资源存在，或同步修改 `tex/data/profile.tex` 中的图片路径。
+- 如果提示找不到照片，检查 `tex/data/profile.tex` 中的 `\ResumePhoto` 路径；个人照片属于本地私有文件，不要提交到 Git。
+- 如果停止输入后热更新超过 3 秒，分别记录首次编译和后续热更新耗时，先确认是否为 TeX 冷启动或字体缓存，不要删除 SyncTeX、日志或错误检查参数来换取速度。
 - 如果 PDF 生成但排版溢出，优先压缩项目经历、技能条目和荣誉奖项，而不是继续缩小字号。
 
-清理编译产物（`latexmk` 已自动删除中间文件，PDF 产物统一在 `.output/`，生成物已在 `.gitignore` 中忽略，也可以不清理）：
+清理编译产物（均已被 `.gitignore` 忽略）：
 
 ```bash
-rm -rf .output       # 删除全部编译输出（含带日期后缀的 PDF）
-latexmk -C           # 仅按 latexmk 规则清理，带日期后缀的 PDF 需用上面的命令删除
+rm -rf .preview .output       # 删除预览和发布输出
 ```
 
 ## 开源发布说明

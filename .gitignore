@@ -7,6 +7,10 @@
 .plan/
 .temptest/
 
+# Isolated Overleaf mirror and manually generated publication archives
+.overleaf-sync/
+*.zip
+
 # LaTeX build artifacts
 .output/
 .preview/
