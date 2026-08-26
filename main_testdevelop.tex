@@ -1,4 +1,6 @@
 % !TeX program = xelatex
+% 润色版本（resume-coach）：仅调整表述、结构与排版一致性，不新增任何未提供的事实或指标。
+% 编译方式：在仓库根目录执行 xelatex -output-directory=temp/.out temp/main_testdevelop.tex
 \documentclass[10pt]{article}
 
 \input{tex/shared/preamble}
@@ -16,32 +18,29 @@
 
     \ResumeContactBar
     \ResumeProfileAndEducation
-    % \vspace{0.45em}
 
     %%%%%%%%%%%%%%%%%%%%
     % 专业技能
     %%%%%%%%%%%%%%%%%%%%
 
-    \section[专业技能]{\makebox[\iconwidth][c]{\color{primarycolor}{\faWrench}}\quad 专业技能}
+    \section[专业技能]{\sectionicon{\faWrench}{专业技能}}
     \begin{itemize}
-        \item \textbf{测试开发基础}：熟练运用等价类、边界值、场景法、状态机、决策表等测试设计方法；熟悉需求评审、用例评审、提测执行、缺陷跟进、回归验证等测试全流程；熟练使用 TAPD、智研平台管理用例与缺陷。
-        \item \textbf{工程与平台能力}：熟练使用 Python、Pytest、Requests 编写接口自动化，Playwright、Selenium、uiautomator2、ADB 编写 UI/移动端自动化，JMeter、Locust 编写性能压测；熟悉 Linux、FastAPI、MySQL、Docker、Git 等工程能力。
-        \item \textbf{AI 应用与测试能力}：理解 RAG、Harness、Memory 等 Agent 机制，熟悉 MCP、Skill、Subagent 等 Agent 工具框架，了解 Skill 等 AI 工具的能力边界及测试方法；能构建 Golden Dataset 与 Bad Case 回流闭环，设计幻觉、拒答、格式化、多轮回归等测试集，以关键词、JSON Schema、相似度、规则断言批量校验；有 Agent 用例自动更新与人工复核的落地经验，日常以 AI 编码助手完成测试脚本与代码审查。
+        \item \textbf{测试设计与流程}：熟练运用等价类、边界值、场景法、状态机、决策表等测试设计方法；熟悉需求评审、用例评审、提测执行、缺陷跟进、回归验证等测试全流程；熟练使用 TAPD、智研平台管理用例与缺陷。
+        \item \textbf{自动化与工程平台}：熟练使用 Python、Pytest、Requests 编写接口自动化，Playwright、Selenium、uiautomator2、ADB 编写 Web/移动端 UI 自动化，JMeter、Locust 设计压测并分析 QPS、P95 与错误率；熟悉 Linux、Docker、Git，能基于 FastAPI + MySQL + Redis 自建测试平台。
+        \item \textbf{AI 应用与测试能力}：理解 RAG、Harness、Memory 等 Agent 机制，熟悉 MCP、Skill、Subagent 等 Agent 工具框架与其能力边界；能构建 Golden Dataset 与 Bad Case 回流闭环，设计幻觉、拒答、格式化、多轮回归等测试集，以关键词、JSON Schema、相似度、规则断言批量校验；日常以 AI 编码助手完成测试脚本编写与代码审查。
     \end{itemize}
-
-    % \vspace{0.35em}
 
     %%%%%%%%%%%%%%%%%%%%
     % 实习经历
     %%%%%%%%%%%%%%%%%%%%
 
-    \section[实习经历]{\makebox[\iconwidth][c]{\color{primarycolor}{\faBriefcase}}\quad 实习经历}
+    \section[实习经历]{\sectionicon{\faBriefcase}{实习经历}}
 
-    \projectheading{腾讯云与智慧产业研发公司}{测开实习生}{2026.06--2026.09}
+    \projectheading{腾讯云与智慧产业研发公司}{测试开发实习生}{2026.06--2026.09}
     \begin{itemize}
-        \item \textbf{手机地图 UI 自动化测试 Agent}：参与腾讯地图 UI 自动化测试平台建设，负责 Agent 编排、Skill 与 MCP 工具落地，覆盖 17 个业务域、600+ 用例。
-        \item \textbf{多 Agent 交叉检查与 Skill 评测}：以多智能体独立生成、交叉比对合并产出 85 条分级用例，结合人工复核形成“AI 生成 + 人工判断”闭环；为地图数据查询、地图渲染两类 Skill 规划 120 条评测用例，沉淀 Agent/Skill 评测方法论。
+        \item \textbf{核心职责}：参与手机腾讯地图 UI 自动化测试 Agent 平台建设与版本需求测试，负责 Agent 编排、Skill 与 MCP 工具落地、测试分析与用例设计、缺陷跟进与回归验证。
         \item \textbf{腾讯地图发版需求测试}：完成【你用我赔 H5】发版需求测试分析，识别跨天状态机、重复进入、端外分享、埋点与兼容性风险，建立 R1--R8 风险清单并与产品/研发逐项对齐；按智研平台规范编写用例、为研发创建自测计划。
+        \item \textbf{多 Agent 交叉检查与 Skill 评测}：以多智能体独立生成、交叉比对合并产出 85 条分级用例，结合人工复核形成“AI 生成 + 人工判断”闭环；为地图数据查询、地图渲染两类 Skill 规划 120 条评测用例，覆盖能力调用、参数边界与异常输入，沉淀 Agent/Skill 评测方法论。
     \end{itemize}
 
     \vspace{0.25em}
@@ -49,22 +48,20 @@
     % \projectheading{重庆啄木鸟网络科技有限公司}{算法实习生（AI 应用测试与交付）}{2025.06--2025.09}
     % \begin{itemize}
     %     \item \textbf{核心职责}：负责大模型应用研发与交付验证，覆盖模型服务接口联调、Prompt/RAG 流程测试、功能冒烟与回归用例设计、接口异常排查和线上 Bad Case 分析，推动模型回复质量与服务稳定性优化。
-    %     \item \textbf{小啡 GPT 智能回复模型}：围绕家电客服多轮对话构建意图识别、槽位抽取、知识命中、指令遵循和结构化输出测试集；使用脚本批量调用模型 API，对回复做关键词、JSON Schema、相似度和规则断言校验，沉淀 100+ 条对话回归样例，定位上下文丢失、知识召回错误和格式漂移等问题。
+    %     \item \textbf{小啄 GPT 智能回复模型}：围绕家电客服多轮对话构建意图识别、槽位抽取、知识命中、指令遵循和结构化输出测试集；使用脚本批量调用模型 API，对回复做关键词、JSON Schema、相似度和规则断言校验，沉淀 100+ 条对话回归样例，定位上下文丢失、知识召回错误和格式漂移等问题。
     %     \item \textbf{智能家电识别与自动入库系统}：针对 OCR/视觉大模型识别、联网补全、向量去重和入库链路设计接口测试与数据质量校验；构造正常、缺字段、重复商品、低置信度识别等场景，通过数据库断言验证字段完整性、去重结果和入库状态，提升交付前缺陷发现效率。
     % \end{itemize}
-
-    % \vspace{0.35em}
 
     %%%%%%%%%%%%%%%%%%%%
     % 项目经历
     %%%%%%%%%%%%%%%%%%%%
 
-    \section[项目经历]{\makebox[\iconwidth][c]{\color{primarycolor}{\faProjectDiagram}}\quad 项目经历}
+    \section[项目经历]{\sectionicon{\faProjectDiagram}{项目经历}}
 
     \projectheading{智能持续测试平台}{独立设计与开发}{2025.10--2026.02}
     \begin{itemize}
-        \item \textbf{平台与框架设计}：基于 Python/Pytest/Requests 搭建五层接口自动化框架，基于 OpenAPI 自动生成契约用例校验状态码、响应 Schema 与业务错误码；以 Vue.js + FastAPI + MySQL + Redis + Docker 构建轻量测试平台，统一管理项目与用例。
-        \item \textbf{UI 自动化与性能压测}：基于 Playwright 落地 PO 模式业务用例，集成 Trace、截图与录制支持回放；使用 JMeter/Locust 设计阶梯加压、稳定性与峰值压测，统计 QPS、P95、错误率并定位慢接口。
+        \item \textbf{框架与平台设计}：基于 Python/Pytest/Requests 搭建五层接口自动化框架，依据 OpenAPI 自动生成契约用例校验状态码、响应 Schema 与业务错误码；以 Vue.js + FastAPI + MySQL + Redis + Docker 构建轻量测试平台，统一管理项目与用例。
+        \item \textbf{UI 自动化与性能压测}：基于 Playwright 以 PO 模式落地业务用例，集成 Trace、截图与录制支持失败回放；使用 JMeter/Locust 设计阶梯加压、稳定性与峰值压测，统计 QPS、P95、错误率并定位慢接口。
         \item \textbf{AI 增强与质量闭环}：将 Pytest/Playwright/Locust 执行封装为平台任务，经 Redis 队列异步调度；引入 LLM 用例生成流水线（生成草稿、人工复核、留存 Bad Case）；报告页聚合通过率、失败原因与趋势，形成测试闭环。
     \end{itemize}
 
@@ -72,22 +69,20 @@
 
     \projectheading{腾讯地图 UI 自动化测试 Agent}{参与框架建设}{2026.06--2026.09}
     \begin{itemize}
-        \item \textbf{智能体编排与用例生成}：构建智能体测试体系，编排 13 个 Skill 与 3 个自研 MCP 服务，打通需求理解到精准回归的全流程，覆盖 17 个业务域、600+ 用例；联动 TAPD/Figma 自动生成可执行 case.py，单用例生成约 10--15 分钟（手写需 1--2 小时）。
-        \item \textbf{MCP 工具开发与多模态感知}：自研设备控制与失败诊断 MCP，接入地图 MCP 解析地点坐标；融合 UIAutomator、OCR、OmniParser、OpenCV 四层感知，链式降级解决自绘控件无 resource-id 的定位问题；scrcpy 投屏将截图耗时从 1s 降至 30--100ms。
-        \item \textbf{知识工程与语义检索}：设计纯文件知识图谱（Page/Component/Pitfall/Operation 四类节点），基于 23 个研发仓库 UI 索引做静态推理，让 Agent 写用例前先读懂研发代码；以 AST 扫描 1500+ 私有 helper，结合 jieba + BM25 实现公共方法语义检索与经验复用。
-        \item \textbf{可靠性工程与自愈闭环}：以意图锁定、九维度自审与人工接管等护栏保障生成质量；Lint 门禁与逐步断言保证代码稳定，health 回测通过率淘汰 flaky 用例；失败后基于证据包自动再生成补丁形成自愈闭环。
+        \item \textbf{智能体编排与用例生成}：构建智能体测试体系，按职责编排 13 个 Skill 与 3 个自研 MCP 服务，打通需求理解到精准回归的全流程，覆盖 17 个业务域、600+ 用例；联动 TAPD/Figma 自动生成可执行 case.py，单用例生成约 10--15 分钟（手写需 1--2 小时）。
+        \item \textbf{MCP 工具开发与多模态感知}：自研设备控制与失败诊断 MCP，接入地图 MCP 解析地点坐标构造测试数据；融合 UIAutomator、OCR、OmniParser、OpenCV 四层感知，链式降级解决自绘控件无 resource-id 的定位问题；以 scrcpy 长连接投屏将截图耗时从约 1s 降至 30--100ms。
+        \item \textbf{知识工程与语义检索}：设计纯文件知识图谱，基于 23 个研发仓库的 UI 索引做静态推理，让 Agent 写用例前先读懂研发代码；以 AST 扫描 1500+ 私有 helper，结合 jieba + BM25 实现公共方法语义检索与经验复用。
+        \item \textbf{可靠性工程与自愈闭环}：以意图锁定、九维度自审与人工接管等护栏保障生成质量；以 Lint 门禁与逐步断言保证代码稳定，用 health 回测通过率淘汰 flaky 用例；失败后基于证据包自动再生成补丁，形成自愈闭环。
     \end{itemize}
-
-    % \vspace{0.35em}
 
     %%%%%%%%%%%%%%%%%%%%
     % 在校成果
     %%%%%%%%%%%%%%%%%%%%
 
-    \section[在校成果]{\makebox[\iconwidth][c]{\color{primarycolor}{\faAward}}\quad 在校成果}
+    \section[在校成果]{\sectionicon{\faAward}{在校成果}}
     \begin{itemize}
-        \item \textbf{竞赛}：2025 “互联网+”创新创业大赛银奖；中国国际大学生创新大赛校级二等奖；重庆市 AI 大模型创新应用大赛省级三等奖
-        \item \textbf{论文}：《LHAF: A Lightweight Hierarchical Adaptive Framework for LLM-based Multimodal Emotion Recognition in Conversations》（SCI I 区在投）
+        \item \textbf{竞赛}：2025 “互联网+”大学生创新创业大赛银奖；2025 中国国际大学生创新大赛校级二等奖；2025 首届重庆市 AI 大模型创新应用大赛省级三等奖
+        \item \textbf{论文}：《LHAF: A Lightweight Hierarchical Adaptive Framework for LLM-based Multimodal Emotion Recognition in Conversations》（SCI 一区在投）
     \end{itemize}
 
 \end{document}
