@@ -67,22 +67,13 @@
 
     \vspace{0.25em}
 
-    % \projectheading{腾讯地图 UI 自动化测试 Agent}{参与框架建设}{2026.06--2026.09}
-    % \begin{itemize}
-    %     \item \textbf{智能体编排与用例生成}：构建智能体测试体系，按职责编排 13 个 Skill 与 3 个自研 MCP 服务，打通需求理解到精准回归的全流程，覆盖 17 个业务域、600+ 用例；联动 TAPD/Figma 自动生成可执行 case.py，单用例生成约 10--15 分钟（手写需 1--2 小时）。
-    %     \item \textbf{MCP 工具开发与多模态感知}：自研设备控制与失败诊断 MCP，接入地图 MCP 解析地点坐标构造测试数据；融合 UIAutomator、OCR、OmniParser、OpenCV 四层感知，链式降级解决自绘控件无 resource-id 的定位问题；以 scrcpy 长连接投屏将截图耗时从约 1s 降至 30--100ms。
-    %     \item \textbf{知识工程与语义检索}：设计纯文件知识图谱，基于 23 个研发仓库的 UI 索引做静态推理，让 Agent 写用例前先读懂研发代码；以 AST 扫描 1500+ 私有 helper，结合 jieba + BM25 实现公共方法语义检索与经验复用。
-    %     \item \textbf{可靠性工程与自愈闭环}：以意图锁定、九维度自审与人工接管等护栏保障生成质量；以 Lint 门禁与逐步断言保证代码稳定，用 health 回测通过率淘汰 flaky 用例；失败后基于证据包自动再生成补丁，形成自愈闭环。
-    % \end{itemize}
-
     \projectheading{腾讯地图 UI 自动化测试 Agent}{参与框架建设}{2026.06--2026.09}
     \begin{itemize}
-        \item \textbf{智能体测试体系与用例生成}：按五层职责编排 13 个 Skill 构建智能体测试流水线，联动 TAPD/Figma 从需求直达可执行 \texttt{case.py}，单用例生成约 10--15 分钟（人工编写需 1--2 小时），覆盖 17 个业务域、600+ 用例。
-        \item \textbf{UI 感知与设备控制}：自研设备控制与线上批次诊断 2 个 MCP 服务，接入腾讯官方地图 MCP 解析坐标构造测试数据；融合 UIAutomator、OCR、OmniParser、OpenCV 四层感知，链式降级解决自绘控件无 resource-id 的定位问题；以 scrcpy 长连接投屏将截图耗时从约 1s 降至 30--100ms。
-        \item \textbf{公共方法沉淀与语义检索}：设计三道闸（hash 唯一性 / AST 依赖解析 / 模式纯度）扫描 1500+ 私有 helper，结合 jieba 分词 + BM25 实现公共方法语义检索，规避规模化生成中的重复实现。
-        \item \textbf{质量保障与精准回归}：以 Lint 门禁与逐步断言保障代码稳定，health 回测通过率自动流转用例生命周期、淘汰 flaky 用例；基于代码 diff 影响链路做可解释的精准回归筛选；失败后拉取日志/截图/源码证据包自动定位根因并生成修复补丁。
+        \item \textbf{智能体编排与用例生成}：构建智能体测试体系，按职责编排 13 个 Skill 与 3 个自研 MCP 服务，打通需求理解到精准回归的全流程，覆盖 17 个业务域、600+ 用例；联动 TAPD/Figma 自动生成可执行 case.py，单用例生成约 10--15 分钟（手写需 1--2 小时）。
+        \item \textbf{MCP 工具开发与多模态感知}：自研设备控制与失败诊断 MCP，接入地图 MCP 解析地点坐标构造测试数据；融合 UIAutomator、OCR、OmniParser、OpenCV 四层感知，链式降级解决自绘控件无 resource-id 的定位问题；以 scrcpy 长连接投屏将截图耗时从约 1s 降至 30--100ms。
+        \item \textbf{知识工程与语义检索}：设计纯文件知识图谱，基于 23 个研发仓库的 UI 索引做静态推理，让 Agent 写用例前先读懂研发代码；以 AST 扫描 1500+ 私有 helper，结合 jieba + BM25 实现公共方法语义检索与经验复用。
+        \item \textbf{可靠性工程与自愈闭环}：以意图锁定、九维度自审与人工接管等护栏保障生成质量；以 Lint 门禁与逐步断言保证代码稳定，用 health 回测通过率淘汰 flaky 用例；失败后基于证据包自动再生成补丁，形成自愈闭环。
     \end{itemize}
-
 
     %%%%%%%%%%%%%%%%%%%%
     % 在校成果

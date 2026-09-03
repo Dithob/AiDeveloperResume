@@ -60,22 +60,13 @@
 
     \section[项目经历]{\sectionicon{\faProjectDiagram}{项目经历}}
 
-    % \projectheading{腾讯地图 UI 自动化测试 Agent}{参与框架建设}{2026.06--2026.09}
-    % \begin{itemize}
-    %     \item \textbf{Agent 架构与多智能体编排}：构建 LLM Agent 质量效能体系，按职责分五层编排 13 个 Skill 与 3 个自研 MCP 服务，打通“自然语言需求 $\rightarrow$ 自动化用例 $\rightarrow$ 知识沉淀”闭环；联动 TAPD/Figma 从需求自动生成可执行 case.py，单用例生成约 10--15 分钟（手写需 1--2 小时），覆盖 17 个业务域、600+ 生成代码单元。
-    %     \item \textbf{MCP 工具开发与多模态感知}：自研设备控制与线上诊断 MCP，接入腾讯地图 MCP 解析坐标构造测试数据；融合 UIAutomator、OCR、OmniParser、OpenCV 四层 UI 感知，链式降级解决自绘控件无 resource-id 的定位问题；scrcpy 长连接投屏将截图耗时从约 1s 降至 50ms。
-    %     \item \textbf{知识工程与语义检索}：设计纯文件知识图谱，基于 23 个研发仓库的 UI 索引做同源静态推理，让 Agent 生成前先读懂研发代码；以 AST 三级过滤扫描 1500+ 私有 helper，结合 jieba + BM25 实现公共方法语义检索与经验回流复用，避免规模化生成时重复造轮子。
-    %     \item \textbf{可靠性工程与自愈闭环}：以意图锁定、门禁探索、九维度自审等护栏机制保障生成质量；通过 Lint 门禁与逐步断言保证代码稳定，以 health 回测通过率淘汰 flaky 用例；失败后基于证据包自动再生成补丁，形成 Self-heal 闭环。
-    % \end{itemize}
-
     \projectheading{腾讯地图 UI 自动化测试 Agent}{参与框架建设}{2026.06--2026.09}
     \begin{itemize}
-        \item \textbf{Agent 架构与多智能体编排}：构建 LLM Agent 质量效能体系，按五层职责编排 13 个 Skill 与 2 个自研 MCP（设备控制、线上诊断），打通"自然语言需求 $\rightarrow$ 自动化用例 $\rightarrow$ 知识沉淀"闭环；联动 TAPD/Figma 从需求自动生成可执行 \texttt{case.py}，单用例约 10--15 分钟（人工需 1--2 小时），覆盖 17 个业务域、600+ 用例。
-        \item \textbf{MCP 工具开发与多模态感知}：自研设备控制与线上批次诊断 MCP 服务，接入腾讯官方地图 MCP 解析坐标构造测试数据；融合 UIAutomator、OCR、OmniParser、OpenCV 四层感知，链式降级解决自绘控件无 resource-id 的定位问题；以 scrcpy 长连接投屏将截图耗时从约 1s 降至 30--100ms。
-        \item \textbf{知识工程与语义检索}：设计纯文件知识图谱，基于 23 个研发仓库的 UI 索引做同源静态推理，让 Agent 生成前先读懂研发代码；以三道闸（hash 唯一性 / AST 依赖解析 / 模式纯度）扫描 1500+ 私有 helper，结合 jieba + BM25 实现公共方法语义检索与经验回流，避免规模化生成时重复造轮子。
-        \item \textbf{可靠性工程与自愈闭环}：以意图锁定、九维度自审、人工接管等护栏机制保障生成质量；通过 Lint 门禁与逐步断言保证代码稳定，以 health 回测通过率淘汰 flaky 用例；失败后基于日志/截图/源码证据包自动定位根因并生成修复补丁，形成自愈闭环。
+        \item \textbf{Agent 架构与多智能体编排}：构建 LLM Agent 质量效能体系，按职责分五层编排 13 个 Skill 与 3 个自研 MCP 服务，打通“自然语言需求 $\rightarrow$ 自动化用例 $\rightarrow$ 知识沉淀”闭环；联动 TAPD/Figma 从需求自动生成可执行 case.py，单用例生成约 10--15 分钟（手写需 1--2 小时），覆盖 17 个业务域、600+ 生成代码单元。
+        \item \textbf{MCP 工具开发与多模态感知}：自研设备控制与线上诊断 MCP，接入腾讯地图 MCP 解析坐标构造测试数据；融合 UIAutomator、OCR、OmniParser、OpenCV 四层 UI 感知，链式降级解决自绘控件无 resource-id 的定位问题；scrcpy 长连接投屏将截图耗时从约 1s 降至 50ms。
+        \item \textbf{知识工程与语义检索}：设计纯文件知识图谱，基于 23 个研发仓库的 UI 索引做同源静态推理，让 Agent 生成前先读懂研发代码；以 AST 三级过滤扫描 1500+ 私有 helper，结合 jieba + BM25 实现公共方法语义检索与经验回流复用，避免规模化生成时重复造轮子。
+        \item \textbf{可靠性工程与自愈闭环}：以意图锁定、门禁探索、九维度自审等护栏机制保障生成质量；通过 Lint 门禁与逐步断言保证代码稳定，以 health 回测通过率淘汰 flaky 用例；失败后基于证据包自动再生成补丁，形成 Self-heal 闭环。
     \end{itemize}
-
 
     \vspace{0.35em}
     \projectheading{基于 RAG 的医药数据分析问答助手}{项目主要成员}{2025.10--2026.02}
