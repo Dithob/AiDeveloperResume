@@ -8,5 +8,5 @@
 \newcommand{\ResumePhone}{1xx-xxxx-xxxx}
 \newcommand{\ResumeHomepageLabel}{github.com/yourname}
 \newcommand{\ResumeHomepageUrl}{https://github.com/yourname}
-\newcommand{\ResumePhoto}{images/kun.jpg}
+\newcommand{\ResumePhoto}{images/kun.png}
 \newcommand{\ResumeHeaderImage}{images/foot.png}
