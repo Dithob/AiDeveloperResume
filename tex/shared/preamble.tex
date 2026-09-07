@@ -55,10 +55,15 @@
 ]{geometry}
 
 % 字体设置
+% 说明：Noto Serif SC 没有原生斜体字型。将 CJK 的 italic 字型映射到常规字形
+%（与过去“找不到斜体、默认替换为常规字形”的实际渲染一致），可消除
+% “Font shape `TU/NotoSerifSC(0)/m/it' undefined” 告警；如需真正斜体观感，
+% 可在此行追加 ItalicFeatures={FakeSlant=0.18}。
 \setCJKmainfont[
     Path=fonts/,
     Extension=.otf,
     BoldFont=*-Bold,
+    ItalicFont={NotoSerifSC},
 ]{NotoSerifSC}
 
 % 自定义颜色

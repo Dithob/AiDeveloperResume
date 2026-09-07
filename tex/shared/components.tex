@@ -48,6 +48,8 @@
     \begin{minipage}[t]{0.14\textwidth}
         \vspace{-0.35em}
         \setlength{\fboxsep}{0pt}
-        \doublebox{\includegraphics[width=\linewidth]{\ResumePhoto}}
+        % 双线框 (\doublebox) 会给照片额外加约 4pt 边框宽；图片若占满 \linewidth 会触发
+        % “Overfull \hbox (3.99988pt too wide)” 告警，故图片宽度预留 4pt，使含框总宽恰好等于栏宽。
+        \doublebox{\includegraphics[width=\dimexpr\linewidth-4pt\relax]{\ResumePhoto}}
     \end{minipage}
 }

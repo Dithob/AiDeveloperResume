@@ -2,12 +2,12 @@
 setlocal EnableDelayedExpansion
 rem Build script: outputs each template into .preview\<template-name>\ (already gitignored),
 rem keeping the repo root clean.
-rem Usage:
-rem   build.bat                         show menu, compile one template (default main_algorithm)
-rem   build.bat main_algorithm.tex      compile a specific template
-rem   build.bat --all                   compile all main_*.tex
+rem Usage (run from anywhere - this script resolves the repo root itself):
+rem   script\build.bat                        show menu, compile one template (default main_algorithm)
+rem   script\build.bat main_algorithm.tex     compile a specific template
+rem   script\build.bat --all                  compile all main_*.tex
 
-cd /d %~dp0
+cd /d "%~dp0.."
 
 rem If xelatex is not on PATH, fall back to the common MiKTeX install location.
 where xelatex >nul 2>nul

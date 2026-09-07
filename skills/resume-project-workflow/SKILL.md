@@ -14,7 +14,7 @@ agent_created: true
 
 - 对 `main_algorithm/backend/frontend/testdevelop.tex` 任一变体评分、润色、岗位定制或导出 PDF。
 - 抽库整理项目经历，或将简历按岗位重构为薄装配层。
-- 本地编译 / 预览 / 产物管理（涉及 `.preview/`、`build.bat`、VS Code 实时预览）。
+- 本地编译 / 预览 / 产物管理（涉及 `.preview/`、`script/build.bat`、VS Code 实时预览）。
 - 用户提及 `.temptest`、`.plan`、`.preview`、`tex/data/projects`、薄装配层等本仓库专属概念时。
 
 ## Hard Collaboration Constraints（编辑/编译前必先核对）
@@ -26,7 +26,7 @@ agent_created: true
 3. **改动/优化版本只输出到 `.temptest/` 并按岗位分类**：`optimized/`（通用优化版）、`algorithm/` `backend/` `frontend/` `testdevelop/`（各岗薄装配层版）。子文件夹编译需把 `tex/` 引用重指向 `../../tex/`。
 4. **「抽库归档」与「重构根文件」是两件事，分别确认。** 抽 17 个项目 bullet 进 `tex/data/projects/` 已获批；把根文件改为 `\projectheading`+`\input` 薄装配层未获批、已被回退。除非用户明确说「并入根目录 / 改回去也行」，否则根文件保持原样。
 5. **根文件回退用 git，不用 `.bak`。** 用户真实原始版在 `git HEAD`（如标题 `Agent 质量效能`）；`main_*.tex.bak` 可能已是优化版副本，不可靠。回退用 `git checkout HEAD -- <file>`。
-6. **编译产物只进 `.preview/`，绝不污染根目录。** 任何编译必须带 `-output-directory=.preview/<模板名>/`，严禁裸跑 `xelatex main_*.tex`；VS Code Build 按钮不可信，用 `build.bat` 或终端。详见「Local Preview & Compile」。
+6. **编译产物只进 `.preview/`，绝不污染根目录。** 任何编译必须带 `-output-directory=.preview/<模板名>/`，严禁裸跑 `xelatex main_*.tex`；VS Code Build 按钮不可信，用 `script/build.bat` 或终端。详见「Local Preview & Compile」。
 
 ## Project Structure（速查）
 
@@ -36,6 +36,7 @@ D:/TestProjects/AiDeveloperResume/
 ├── main_backend.tex      # 后端岗
 ├── main_frontend.tex     # 前端岗
 ├── main_testdevelop.tex  # 测试开发岗
+├── script/               # build.bat 一键编译、package_overleaf.* 导出 Overleaf zip
 ├── tex/
 │   ├── shared/  preamble.tex（\ResumeTargetRole 等宏）、components.tex（\projectheading）
 │   ├── data/
@@ -148,7 +149,7 @@ PY
 
 - **产物绝不污染根目录**：编译必须带 `-output-directory=.preview/<模板名>/`，严禁裸跑 `xelatex main_*.tex`。
 - **产物按模板分类**：`.preview/main_algorithm/`、`main_backend/`、`main_frontend/`、`main_testdevelop/`。
-- **VS Code Build 按钮不可信**：`main_*.tex` 首行 `% !TeX program = xelatex` 魔术注释会劫持 recipe，按钮编译会落根目录。优先 `build.bat` 或终端。
+- **VS Code Build 按钮不可信**：`main_*.tex` 首行 `% !TeX program = xelatex` 魔术注释会劫持 recipe，按钮编译会落根目录。优先 `script/build.bat` 或终端。
 - **不做自动清理**：本机无 Perl，`latexmk` 不可用，`autoClean` 须设 `never`。
 - **双击 PDF 跳回源码**：用内置 pdf.js 查看器（`Ctrl+Alt+V`），编译须带 `-synctex=1`。
 
@@ -156,22 +157,22 @@ PY
 
 终端（VS Code 集成终端 / PowerShell / CMD）跑上方 Compile & Verify 里的根变体命令（带 `-output-directory=.preview/<模板名>/`，跑两遍），换模板时把文件名与目录名一起改。
 
-### build.bat（仓库根目录，已提供）
+### script/build.bat（一键编译）
 
 - 双击 / 无参 → 弹菜单选单个模板（默认 1 = `main_algorithm`）。
-- `build.bat main_algorithm.tex` → 编译指定模板。
-- `build.bat --all` → 一次性编译全部 4 个。
+- `script/build.bat main_algorithm.tex` → 编译指定模板。
+- `script/build.bat --all` → 一次性编译全部 4 个。
 - 产物统一进 `.preview/<模板名>/`；脚本带「找不到 xelatex 补 MiKTeX 路径」兜底。
 
 ### VS Code 实时预览（Overleaf 体验）
 
-1. `build.bat` 编译当前在改的模板（稳定，不经过插件 recipe）。
+1. `script/build.bat` 编译当前在改的模板（稳定，不经过插件 recipe）。
 2. VS Code 打开 `main_*.tex`，`Ctrl+Alt+V` 打开 PDF（内置 pdf.js 标签页）。
 3. PDF 标签页拖右侧 / `Split Right` → 左源码右 PDF。
 4. 改 `.tex` 重编，右侧 PDF 监测文件变化自动刷新。
 5. 双击 PDF 跳回 `.tex` 对应行（反向 `Ctrl+Alt+J`）。
 
-`.vscode/settings.json` 要点：`outDir: .preview/%DOC%`、recipe `xelatex-preview`（`-output-directory=.preview/%DOC%` 跑两遍）、`forceRecipeUsage: true`（压魔术注释）、`autoClean.run: never`、`view.pdf.viewer: tab`。⚠️ 但用户实测按钮仍落根目录 → Agent 应**优先推荐终端 / build.bat**，别拍胸脯说「按钮肯定进 preview」。
+`.vscode/settings.json` 要点：`outDir: .preview/%DOC%`、recipe `xelatex-preview`（`-output-directory=.preview/%DOC%` 跑两遍）、`forceRecipeUsage: true`（压魔术注释）、`autoClean.run: never`、`view.pdf.viewer: tab`。⚠️ 但用户实测按钮仍落根目录 → Agent 应**优先推荐终端 / script/build.bat**，别拍胸脯说「按钮肯定进 preview」。
 
 ### 踩坑清单（必须避免）
 

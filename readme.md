@@ -145,12 +145,12 @@ xelatex -output-directory=.preview/main_algorithm main_algorithm.tex
 xelatex -output-directory=.preview/main_algorithm main_algorithm.tex   # 再跑一遍
 ```
 
-或一键脚本（仓库根目录已提供 `build.bat`，双击或在终端运行）：
+或一键脚本（`script/build.bat`，双击或在终端运行）：
 
 ```bash
-build.bat                          # 弹出菜单，选择编译一个模板
-build.bat main_algorithm.tex       # 编译指定模板
-build.bat --all                    # 编译全部 main_*.tex
+script/build.bat                     # 弹出菜单，选择编译一个模板
+script/build.bat main_algorithm.tex  # 编译指定模板
+script/build.bat --all               # 编译全部 main_*.tex
 ```
 
 > 终端手动编译不经过 LaTeX Workshop 的 recipe 选择逻辑，因此不受 `% !TeX program` 魔术注释影响，稳定进入 `.preview/<模板名>/`。如果 VS Code 的 Build 按钮行为不稳定，直接用本方式即可。
@@ -162,9 +162,9 @@ build.bat --all                    # 编译全部 main_*.tex
 3. 把 PDF 标签页拖到右侧（或右键 → Split Right），形成左右分屏。
 4. 以后修改 `.tex` 后：
    - 如果开了 VS Code 自动编译且插件正常，1.2 秒后右侧 PDF 自动刷新；
-   - 如果插件按钮还是落根目录/不刷新，在终端跑 `build.bat main_algorithm.tex` 重新编译，右侧 PDF 也会检测到文件变化并自动刷新。
+   - 如果插件按钮还是落根目录/不刷新，在终端跑 `script/build.bat main_algorithm.tex` 重新编译，右侧 PDF 也会检测到文件变化并自动刷新。
 
-> 核心原则：**编辑用 VS Code，编译用 `build.bat`/终端命令，预览用 VS Code 的 `Ctrl+Alt+V`**。这样既稳定，又能达到 Overleaf 的实时预览效果。
+> 核心原则：**编辑用 VS Code，编译用 `script/build.bat`/终端命令，预览用 VS Code 的 `Ctrl+Alt+V`**。这样既稳定，又能达到 Overleaf 的实时预览效果。
 
 ### 备选：Overleaf（不想装本地环境时）
 
@@ -172,6 +172,7 @@ build.bat --all                    # 编译全部 main_*.tex
 
 1. 打开左上角 `Menu`，把 `Compiler` 设置为 `XeLaTeX`。如果日志第一行出现 `This is pdfTeX` 或 `preloaded format=pdflatex`，说明仍在使用 pdfLaTeX，中文字体宏包会直接报错。
 2. Overleaf 项目里同样需要 `tex/data/profile.tex` 和 `tex/data/education.tex`——上传后按「第 0 步」把两个 `*.example` 文件重命名（去掉 `.example` 后缀）即可。
+3. 不想手动挑文件时，可运行 `script/package_overleaf.bat` 一键打包：自动生成只含编译所需最小文件集的 zip（输出到 `overleaf/`），`New Project → Upload Project` 导入即可编辑，包内自带 `README-Overleaf.txt` 说明。
 
 ## 环境要求
 
@@ -194,6 +195,7 @@ build.bat --all                    # 编译全部 main_*.tex
 ├── main_testdevelop.tex            # 测试开发方向简历模板
 ├── .latexmkrc                      # latexmk 配置：XeLaTeX + 输出到 .output/ + PDF 日期后缀 + 自动清理副产物
 ├── .output/                        # latexmk 编译输出目录（git 忽略，仅保留带日期后缀的 PDF）
+├── script/                         # 本地脚本：build.bat 编译预览、package_overleaf.* 导出 Overleaf zip
 ├── docs/
 │   └── CV-preview.jpg              # 简历预览图
 ├── fonts/                          # 内置 Noto Serif SC 字体

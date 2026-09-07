@@ -2,6 +2,7 @@
 .miktex/
 .workbuddy/
 .codebuddy/
+.agent/
 .backup/
 # .history/
 .plan/
@@ -28,6 +29,9 @@
 # Generated resume exports
 *.pdf
 !docs/*.pdf
+
+# Overleaf package output
+overleaf/
 
 # OS/editor noise
 .DS_Store
