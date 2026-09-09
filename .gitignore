@@ -2,7 +2,7 @@
 .miktex/
 .workbuddy/
 .codebuddy/
-.agent/
+.agents/
 .backup/
 # .history/
 .plan/

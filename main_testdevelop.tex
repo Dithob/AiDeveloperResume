@@ -71,13 +71,21 @@
 
     % \vspace{0.25em}
 
-    \projectheading{地图 WebUI 自动化测试 Agent}{独立设计与开发}{2026.06--2026.09}
+    % \projectheading{AI 辅助 Web 自动化测试框架}{独立设计与开发}{2026.06--2026.09}
+    % \begin{itemize}
+    %     \item \textbf{框架与资产治理}：基于 Playwright + TypeScript 构建可复用 Web UI 自动化框架，以 stableId 追踪 demo 生命周期、漂移检查识别线上变化，覆盖 glAPI 18 分类/129 实例与数据可视化 7 分类/44 实例，孤儿资产只报告不清理。
+    %     \item \textbf{Canvas/WebGL 取证}：以画布直取截图 primitive 替代 CDP 整页合成，单次截图从 58~103s 降至约 0.6s；硬编码 sleep 从 72 处收敛至 5 处，全量 130 条回归从 58.8m 降至 43.6m，runnerError 从 34 归零。
+    %     \item \textbf{AI 测试自闭环}：建成「用例生成 → 可靠性评审 → 失败归因 → 受控修复 → 经验沉淀」闭环，AI 出草稿与建议、人工守业务判断与放行；六态分类（通过/不稳定/失败/阻断/执行异常/未完成）区分产品、测试与环境问题。
+    %     \item \textbf{Canvas/WebGL 取证}：以画布直取截图 primitive 替代 CDP 整页合成，单次截图从 58~103s 降至约 0.6s；硬编码 sleep 从 72 处收敛至 5 处，全量 130 条回归从 58.8m 降至 43.6m，runnerError 从 34 归零。
+    %     \item \textbf{受控自修复}：落地修复安全门与趋势账本，修复遵循「AI 提议、框架验证、人工放行」并以断言意图保持率为反向指标；沉淀 8 个项目级 Skill 复用公共能力。
+    % \end{itemize}
+
+    \projectheading{AI 辅助 Web 自动化测试框架}{独立设计与开发}{2026.06--2026.09}
     \begin{itemize}
-        \item \textbf{框架与资产治理}：基于 Playwright + TypeScript 构建可复用 Web UI 自动化框架，以 stableId 追踪 demo 生命周期、漂移检查识别线上变化，覆盖 glAPI 18 分类/129 实例与数据可视化 7 分类/44 实例，孤儿资产只报告不清理。
-        \item \textbf{Canvas/WebGL 取证}：以画布直取截图 primitive 替代 CDP 整页合成，单次截图从 58~103s 降至约 0.6s；硬编码 sleep 从 72 处收敛至 5 处，全量 130 条回归从 58.8m 降至 43.6m，runnerError 从 34 归零。
-        \item \textbf{AI 测试自闭环}：建成「用例生成 → 可靠性评审 → 失败归因 → 受控修复 → 经验沉淀」闭环，AI 出草稿与建议、人工守业务判断与放行；六态分类（通过/不稳定/失败/阻断/执行异常/未完成）区分产品、测试与环境问题。
-        \item \textbf{Canvas/WebGL 取证}：以画布直取截图 primitive 替代 CDP 整页合成，单次截图从 58~103s 降至约 0.6s；硬编码 sleep 从 72 处收敛至 5 处，全量 130 条回归从 58.8m 降至 43.6m，runnerError 从 34 归零。
-        \item \textbf{受控自修复}：落地修复安全门与趋势账本，修复遵循「AI 提议、框架验证、人工放行」并以断言意图保持率为反向指标；沉淀 8 个项目级 Skill 复用公共能力。
+        \item \textbf{框架与资产治理}：基于 Playwright + TypeScript 构建 Web UI 自动化测试框架，覆盖 glAPI 129 实例与数据可视化 44 实例；以 stableId 追踪示例生命周期、漂移检查识别线上变化，孤儿资产仅报告、不自动清理。
+        \item \textbf{AI 辅助测试流程}：引入 AI 辅助用例生成、可靠性评审与失败分析，输出用例草稿和修复建议，由框架验证、人工放行；沉淀 8 个项目级 Skill，复用测试能力与处理经验。
+        \item \textbf{失败归因与修复约束}：建立六态结果分类，辅助区分产品、测试与环境问题；通过修复安全门、断言意图保持指标与趋势账本，约束 AI 修复建议，防范修复偏离测试意图。
+        \item \textbf{取证与执行优化}：针对 Canvas/WebGL 取证瓶颈，以画布直接截图替代 CDP 整页合成，单次截图由 58--103s 降至约 0.6s；硬编码等待由 72 处减至 5 处，130 条回归由 58.8min 降至 43.6min，执行异常由 34 降至 0。
     \end{itemize}
 
     \vspace{0.25em}
@@ -90,7 +98,7 @@
     %     \item \textbf{可靠性工程与自愈闭环}：以意图锁定、九维度自审与人工接管等护栏保障生成质量；以 Lint 门禁与逐步断言保证代码稳定，用 health 回测通过率淘汰 flaky 用例；失败后基于证据包自动再生成补丁，形成自愈闭环。
     % \end{itemize}
 
-    \projectheading{腾讯地图 UI 自动化测试 Agent}{参与框架建设}{2026.06--2026.09}
+    \projectheading{移动端地图 UI 自动化测试 Agent}{参与框架建设}{2026.06--2026.09}
     \begin{itemize}
         \item \textbf{Agent 系统架构与多智能体编排}：构建 LLM Agent 质量效能体系，按职责编排 13 个 Skill 与 3 个 MCP 服务，打通从需求到自动化用例生成、再到知识沉淀的闭环；联动 TAPD 需求文档与 Figma 产品设计稿自动生成可执行 case.py，单用例生成约 10 分钟（手写需 2 小时），覆盖 17 个业务域、600+ 生成代码单元。
         % \item \textbf{Agent 系统架构与多智能体编排}：按职责编排 13 个 Skill 与 3 个 MCP 服务，打通「需求 → 用例生成 → 知识沉淀」闭环；联动 TAPD 需求文档与 Figma 设计稿自动生成 case.py，单用例约 10 分钟（手写需 2 小时），覆盖 17 个业务域、600+ 用例。
@@ -101,6 +109,15 @@
         \item \textbf{可靠性工程与自愈闭环}：以意图锁定、探索门禁、九维度自审等护栏机制保障生成质量；通过 Lint 门禁与逐步断言保证代码稳定，以 health 回测通过率淘汰 flaky 用例；失败后基于证据包自动再生成补丁形成自愈闭环。
         % \item \textbf{可靠性工程与自愈闭环}：以意图锁定、探索门禁、九维度自审等护栏保障生成质量，Lint 门禁与 health 回测淘汰 flaky 用例；失败后基于证据包自动补丁形成自愈闭环。
     \end{itemize}
+
+    % \projectheading{地图移动端 UI 测试 Agent}{参与框架建设}{2026.06--2026.09}
+    % \begin{itemize}
+    %     \item \textbf{Agent 编排与需求转译}：按职责编排 13 个 Skill 与 3 个 MCP 服务，联动 TAPD 需求与 Figma 设计稿生成可执行 case.py；覆盖 17 个业务域、600+ 生成代码单元，单用例生成约 10min（手写约 2h）。
+    %     \item \textbf{MCP 与多模态交互}：自研设备控制与诊断 MCP，接入地图 MCP 解析坐标构造测试数据；融合四层视觉感知链式降级，解决自绘控件无 resource-id 的定位问题；scrcpy 投屏将截图耗时由约 1s 降至 30--100ms。
+    %     \item \textbf{知识增强与代码复用}：设计页面、组件、坑点、操作四类知识节点，利用 23 个研发仓库 UI 索引辅助生成前的代码理解；以 AST 扫描 1500+ helper，结合 jieba + BM25 检索公共方法，复用已有操作与经验。
+    %     \item \textbf{生成质量护栏}：以意图锁定、探索门禁与九维度自审约束生成过程；通过 Lint、逐步断言与 health 回测筛除不稳定用例，并基于失败证据包再生成补丁。
+    % \end{itemize}
+
 
     
     % \vspace{0.35em}
