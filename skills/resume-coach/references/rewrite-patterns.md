@@ -22,6 +22,16 @@ Use these as flexible patterns, not rigid templates.
 
 `在 [场景] 下，承担 [任务]，通过 [行动/技术]，取得 [结果]。`
 
+Four elements: **S** = situation or problem (business stage, pain point, scale); **T** = the goal or responsibility taken on; **A** = what was actually done, with methods and tools — the core of the bullet, and the part worth expanding; **R** = the measurable result or clear impact.
+
+Bullet weighting is uneven: de-emphasize S, state T briefly, rewrite A in detail, foreground R. One bullet is usually one or two sentences focused on a single outcome.
+
+Reusable sentence patterns:
+
+- `通过〔方法/工具〕，〔完成什么动作〕，实现〔量化结果〕`
+- `主导〔项目/模块〕，〔关键动作〕，使〔指标〕从 X 提升到 Y`
+- `针对〔痛点/约束〕，〔行动〕，〔结果/影响〕`
+
 ### CAR
 
 `面对 [挑战]，采用 [行动/方案]，带来 [结果/收益]。`
@@ -40,22 +50,13 @@ Use these as flexible patterns, not rigid templates.
 
 ## Action verbs
 
-Chinese:
+Chinese, grouped by intent (upgrade vague duty verbs such as `负责一些` / `参与部分` / `协助` when the facts support a stronger one):
 
-- 负责
-- 主导
-- 设计
-- 实现
-- 重构
-- 优化
-- 接入
-- 搭建
-- 迁移
-- 上线
-- 排查
-- 沉淀
-- 推动
-- 支撑
+- **Ownership & driving**: 负责、主导、牵头、统筹、推动、发起、搭建、组建、制定、支撑
+- **Execution & improvement**: 设计、实现、重构、优化、接入、迁移、上线、迭代、落地、实施、简化、标准化、自动化
+- **Analysis & diagnosis**: 分析、排查、拆解、定位、诊断、复盘、建模、量化、挖掘、沉淀
+- **Growth & efficiency**: 拉动、提升、转化、增长、降本、提效、控制、变现
+- **Collaboration & enablement**: 协调、对齐、赋能、培训、带教、跨部门推动
 
 English:
 
@@ -168,6 +169,8 @@ If proof is absent, remove the section.
 
 ## Metrics
 
+Look for numbers along four dimensions: **scale** (users, DAU, orders, data volume, team size, budget), **efficiency** (time or cost saved, throughput, a cycle from X to Y), **outcome** (conversion, retention, revenue, cost, satisfaction, NPS, defect rate), **comparison** (period-over-period growth, ranking, zero-to-one).
+
 Good metrics can include:
 
 - QPS, latency, error rate, memory, CPU
@@ -177,7 +180,13 @@ Good metrics can include:
 - Number of documents, tests, modules, APIs, issues, PRs
 - Delivery time reduction
 
-Never invent metrics. When the user has no metric, suggest what could be measured or write the impact qualitatively.
+Never invent metrics. Missing-data protocol, in order of preference:
+
+1. Ask the user for the real number and list the gaps as evidence needed.
+2. Keep a visible placeholder in the draft, e.g. `（提升约 __%，待补充）`, so the candidate fills in the true figure.
+3. Fall back to credible qualitative wording (`显著缩短排查时间`), with no specific number.
+
+Never upgrade the role and the number at the same time — e.g. turning `参与优化` into `独立主导并提升 30% 转化`.
 
 ## Cleanup rules
 

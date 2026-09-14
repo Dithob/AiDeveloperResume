@@ -27,6 +27,7 @@ agent_created: true
 4. **「抽库归档」与「重构根文件」是两件事，分别确认。** 抽 17 个项目 bullet 进 `tex/data/projects/` 已获批；把根文件改为 `\projectheading`+`\input` 薄装配层未获批、已被回退。除非用户明确说「并入根目录 / 改回去也行」，否则根文件保持原样。
 5. **根文件回退用 git，不用 `.bak`。** 用户真实原始版在 `git HEAD`（如标题 `Agent 质量效能`）；`main_*.tex.bak` 可能已是优化版副本，不可靠。回退用 `git checkout HEAD -- <file>`。
 6. **编译产物只进 `.preview/`，绝不污染根目录。** 任何编译必须带 `-output-directory=.preview/<模板名>/`，严禁裸跑 `xelatex main_*.tex`；VS Code Build 按钮不可信，用 `build.bat` 或终端。详见「Local Preview & Compile」。
+7. **「蓝本 → 根稿」合并前必须先 diff 漂移检查。** 用户会直接手改根稿 `main_*.tex`（如手动注释某个项目），而 AI 在 `.temptest/` 的实验蓝本对此不知情；如果直接用 `cp` 蓝本覆盖根稿，用户的手动改动会被静默冲掉（2026-09-14 事故：用户多次注释「云端智能图像协同系统」均被恢复，被批评）。合并前先跑 `diff main_X.tex .temptest/test_X_final.tex`：若根稿存在蓝本没有的改动（通常是用户新加的注释），**先把该改动同步进蓝本，再合并回根稿**；涉及启用/停用状态的项目，改动要同时落两处，并在注释处附注记。
 
 ## Project Structure（速查）
 

@@ -84,6 +84,23 @@ Common actions:
 - Convert broad claims into concrete evidence
 - Add a concise summary only if it improves first-screen clarity
 
+## Ordering by role match
+
+Reorder entries and bullets only within the same module; never reshuffle the resume's module order (education / experience / projects / skills stay where they are), so the layout stays stable. Rank by match to the target JD:
+
+1. **Core responsibility hit** — experience that directly maps to the JD's main duties or key metrics leads (for a growth role, the growth project).
+2. **Hard-skill hit** — entries using tools, languages, or methods the JD explicitly requires (SQL, A/B testing, Python, Figma, agile).
+3. **Soft-skill hit** — general abilities the JD stresses (cross-team collaboration, ownership, analytical thinking).
+4. **Weak or routine work** — maintenance, reporting, admin support — goes last.
+
+Granularity:
+
+- Module order: unchanged.
+- Bullets inside one entry: strongest capability first, routine tasks last.
+- Skills section: JD keywords first, secondary skills after — never add skills that are not real.
+
+Without a JD, order by strongest outcome and clearest capability instead; do not force a reshuffle.
+
 ## Gap recommendations
 
 For absent but important requirements, do not fake. Recommend one of:
