@@ -16,7 +16,7 @@
 % 文章内容
 %%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\ResumeTargetRole}{Java 后端开发}
+\newcommand{\ResumeTargetRole}{后端开发}
 \input{tex/shared/components}
 
 \begin{document}
@@ -31,12 +31,16 @@
 
     \section[专业技能]{\makebox[\iconwidth][c]{\color{primarycolor}{\faWrench}}\quad 专业技能}
     \begin{itemize}
-        \item \textbf{Java 与后端框架}：熟悉 Java 集合、异常处理、反射、注解、Stream API 与多线程基础；熟悉 Spring Boot、Spring MVC、MyBatis/MyBatis-Plus，能够完成 RESTful API 设计、参数校验、统一异常处理和业务模块开发。
-        \item \textbf{数据库与缓存}：熟悉 MySQL 表结构设计、索引、事务、分页查询和慢 SQL 排查；熟悉 Redis 常用数据结构、缓存穿透/击穿/雪崩处理、Lua 脚本和 Redisson 分布式锁，能够围绕热点数据设计缓存方案。
-        \item \textbf{微服务与中间件}：了解 Spring Cloud、Nacos、OpenFeign、Gateway、Sentinel、RabbitMQ、Seata 等组件；具备服务注册发现、统一网关、服务调用、限流降级、异步消息、延迟队列和分布式事务实践。
+        \item \textbf{Java 与服务端开发}：熟悉 Java 集合、异常处理、反射、注解、Stream API 与多线程基础；熟悉 Spring Boot、Spring MVC、MyBatis/MyBatis-Plus，能够完成 RESTful API 设计、参数校验、统一异常处理和业务模块开发。
+        \item \textbf{数据库与缓存}：熟悉 MySQL 表结构设计、索引、事务与慢 SQL 排查；具备 Redis、Caffeine 缓存应用实践，能够使用 Redisson 分布式锁与 Lua 脚本处理并发访问和库存扣减。
+        % \item \textbf{微服务与中间件}：了解 Spring Cloud、Nacos、OpenFeign、Gateway、Sentinel、RabbitMQ、Seata 等组件；具备服务注册发现、统一网关、服务调用、限流降级、异步消息、延迟队列和分布式事务实践。
+        \item \textbf{微服务与消息处理}：具备 Spring Cloud、Nacos、Gateway、RabbitMQ 项目实践，能够实现服务注册发现、网关路由、异步消息与订单超时处理；了解 OpenFeign、Sentinel 等组件。
         % \item \textbf{工程化与质量保障}：熟悉 Linux、Git、Maven、Docker、Postman、JMeter 等工具；能够进行接口联调、日志排查、性能压测、容器化部署和基础运维，关注接口耗时、吞吐量、错误率和数据一致性。
-        \item \textbf{AI 应用协作}：具备 RAG 项目实践，熟悉 Linux、Git、Postman、JMeter 等工具；熟悉FastAPI 服务封装、Prompt/RAG 流程调试和模型接口联调，可将 AI 能力以后端 API 形式接入业务系统。
+        \item \textbf{AI 应用开发与服务化}：具备 RAG、Text2SQL 与 MCP 服务开发实践，可使用 FastAPI 封装 AI 能力，完成模型接口接入与联调、检索增强、异常处理及离线评估。熟悉 Linux、Git、Maven、Docker、Postman、JMeter 等工具。
+        
     \end{itemize}
+
+
 
     %%%%%%%%%%%%%%%%%%%%
     % 实习经历
@@ -46,9 +50,11 @@
 
     \projectheading{腾讯云与智慧产业研发公司}{后端开发实习生}{2026.06--2026.09}
     \begin{itemize}
-        \item \textbf{服务开发与工具链}：自研设备控制、线上诊断等 3 个 MCP 服务，接入地图 MCP 动态解析坐标构造测试数据；以 scrcpy 长连接投屏将单次截图耗时从约 1s 降至 50ms。
-        \item \textbf{接口质量与缺陷归因}：为 LBS 营销专家（4 个 Skill）搭建 Skill 层 × 接口层双维度评测口径，执行 38 条 P0 用例定位接口层缺陷；完成端到端验收，识别硬编码 Key 泄露等 5 项风险并分级归档。
-        \item \textbf{效能与稳定性优化}：参与 Web 自动化框架建设，全量回归由 58.8min 降至 43.6min、执行异常由 34 归零；完成【你用我赔 H5】发版测试，建立跨天状态机、数据一致性等 R1--R8 风险清单。
+        \item \textbf{AI 工具服务开发}：围绕智能体交互与诊断需求，将设备操作与诊断能力封装为 MCP 服务；对接地图 MCP，实现动态坐标解析与场景数据构造；采用 scrcpy 长连接投屏优化图像采集链路，将单次截图h耗时由约 1s 降至 50ms。
+        \item \textbf{执行内核与运行隔离}：参与 Web 自动化框架公共执行层建设，复用浏览器驱动、环境配置与结果汇总能力，将项目用例、断言及视觉基线与公共内核分离，支持地图 glAPI 与数据可视化项目复用。
+        % \item \textbf{采集链路与框架优化}：针对设备截图采集耗时较高的问题，引入 scrcpy 长连接投屏方案优化图像获取链路，将单次截图耗时由约 1s 降至 50ms；参与 Web 自动化框架优化，全量回归耗时由 58.8m 降至 43.6m，执行异常由 34 项降至 0 项。
+        % \item \textbf{超时治理与故障定位}：参与排查画面采样长期挂起等执行异常，为高风险操作设置单步超时并衔接降级或重试流程；结合网络请求、Console 日志及 trace 分类定位环境、页面与运行器异常。框架迭代后，全量回归耗时由 58.8min 降至 43.6min，执行异常由 34 项降至 0 项。
+        \item \textbf{接口可靠性与安全评估}：围绕 LBS 营销专家的 4 个 Skill，按 Skill 调用层与业务接口层拆分验证链路，通过 38 条 P0 用例定位接口层缺陷；结合端到端验收，识别硬编码密钥等 5 项风险并分级归档，为接口修复与发布验收提供依据。
     \end{itemize}
 
     % \vspace{0.25em}
@@ -65,23 +71,34 @@
     %%%%%%%%%%%%%%%%%%%%
 
     \section[项目经历]{\makebox[\iconwidth][c]{\color{primarycolor}{\faProjectDiagram}}\quad 项目经历}
-
-    \projectheading{小麦购票}{后端开发}{2025.09--2025.12}
+    
+    \projectheading{小麦 AI 智能票务交易平台}{后端开发}{2026.06--2026.09}
     \begin{itemize}
-        \item \textbf{项目目标}：面向演出购票高并发场景，基于 Spring Cloud、MyBatis-Plus、Nacos、Gateway、Redis、RabbitMQ、Redisson、Caffeine 与 Lua 构建类似大麦的购票系统，覆盖节目展示、票档库存、下单支付和订单超时取消。
-        \item \textbf{缓存与热点访问优化}：采用布隆过滤器缓解新用户注册缓存穿透，结合“先查询，后加锁”处理缓存击穿；使用 Caffeine 缓存平台主页数据，将主页访问耗时由 160ms 优化至 90ms；使用 Redis 缓存节目详情和票档余量，将详情查看耗时由 205ms 优化至 132ms，吞吐量由 487/sec 提升至 1493/sec。
-        \item \textbf{库存扣减与并发控制}：先使用 Redisson 分布式锁按“节目 + 票档”维度控制购票并发，将吞吐量由 60.1/sec 提升至 68.2/sec；进一步改为 Redis + Lua 原子扣减票档库存，减少锁竞争后吞吐量提升至 88.5/sec。
-        \item \textbf{订单可靠性设计}：基于 RabbitMQ 延迟队列实现订单超时自动取消，结合 Saga 思想设计补偿流程，处理支付失败、库存回滚和订单状态修正，降低高并发购票链路中的数据不一致风险。
+        \item \textbf{项目架构}：面向演出票务的智能选票与高并发交易场景，基于 Spring Cloud、Nacos、Gateway、MyBatis-Plus、Redis、RabbitMQ 等构建微服务票务平台，覆盖演出检索、票档库存、订单创建、支付及超时取消等核心链路。
+    
+        \item \textbf{AI 智能购票能力}：面向传统购票平台筛选条件复杂、用户决策成本高的问题，设计自然语言购票入口，将用户对城市、时间、预算、演出类型及座位偏好的描述转化为结构化检索条件；通过票务服务接口获取实时演出与票档信息，为用户生成候选演出与购票建议，实现“自然语言需求 → 演出检索 → 票档推荐 → 下单”的智能购票链路。
+    
+        \item \textbf{缓存与热点访问优化}：针对首页、演出详情及票档余量等高频读取场景，使用 Caffeine 缓存首页热点数据、Redis 缓存演出详情与实时余量，并结合布隆过滤器及缓存重建机制降低无效查询与热点 Key 回源压力；演出详情接口耗时由 205ms 降至 132ms，吞吐量由 487 QPS 提升至 1493 QPS。
+    
+        \item \textbf{库存扣减与并发控制}：围绕“演出 + 票档”维度设计库存并发控制，早期采用 Redisson 分布式锁串行化库存修改，进一步使用 Redis + Lua 将库存校验与扣减合并为原子操作，减少锁竞争与网络交互，核心购票接口吞吐量由 68.2 QPS 提升至 88.5 QPS，并避免高并发场景下库存超卖。
+    
+        \item \textbf{订单可靠性与异常补偿}：基于 RabbitMQ 延迟消息实现订单超时关闭，围绕库存扣减、订单创建、支付结果等状态设计补偿流程；对重复/取消/失败及库存回滚等异常场景进行幂等控制与状态校验，降低异步交易链路中的数据不一致风险。
     \end{itemize}
-
+    % \begin{itemize}
+    %     \item \textbf{项目目标}：面向演出购票高并发场景，基于 Spring Cloud、MyBatis-Plus、Nacos、Gateway、Redis、RabbitMQ、Redisson、Caffeine 与 Lua 构建类似大麦的购票系统，覆盖节目展示、票档库存、下单支付和订单超时取消。
+    %     \item \textbf{缓存与热点访问优化}：采用布隆过滤器缓解新用户注册缓存穿透，结合“先查询，后加锁”处理缓存击穿；使用 Caffeine 缓存平台主页数据，将主页访问耗时由 160ms 优化至 90ms；使用 Redis 缓存节目详情和票档余量，将详情查看耗时由 205ms 优化至 132ms，吞吐量由 487/sec 提升至 1493/sec。
+    %     \item \textbf{库存扣减与并发控制}：先使用 Redisson 分布式锁按“节目 + 票档”维度控制购票并发，将吞吐量由 60.1/sec 提升至 68.2/sec；进一步改为 Redis + Lua 原子扣减票档库存，减少锁竞争后吞吐量提升至 88.5/sec。
+    %     \item \textbf{订单可靠性设计}：基于 RabbitMQ 延迟队列实现订单超时自动取消，结合 Saga 思想设计补偿流程，处理支付失败、库存回滚和订单状态修正，降低高并发购票链路中的数据不一致风险。
+    % \end{itemize}
     \vspace{0.35em}
     \projectheading{基于 RAG 的医药数据分析问数 Agent}{项目主要成员}{2025.10--2026.02}
     \begin{itemize}
         \item \textbf{项目目标}：面向药品采购、零售、库存等全链路数据及 800 余张业务表，基于 Dify、LangChain 与 Milvus 建设 LLM 数据分析问数助手，将业务人员的自然语言问题转化为可执行 SQL 与可读分析结论。
         \item \textbf{问数链路设计}：完成 LLM 应用的工程化部署，设计“问题理解--Schema 检索--SQL 生成--结果解释--人工反馈”端到端链路，打通对话入口、检索服务与 SQL 执行反馈各环节，降低业务人员直接理解复杂数据库结构的门槛。
-        \item \textbf{表结构与字段召回}：对数据字典进行元数据增强，将表名、字段名、字段含义和常见枚举值拼接为富文本后向量化，为 Schema 检索提供高质量索引；结合业务规则过滤、问题类型判断、样例对与 CoT，引导模型优先选择相关表和字段，提高复杂多表结构下的 SQL 生成稳定性。
+        % \item \textbf{表结构与字段召回}：对数据字典进行元数据增强，将表名、字段名、字段含义和常见枚举值拼接为富文本后向量化，为 Schema 检索提供高质量索引；结合业务规则过滤、问题类型判断、样例对与 CoT，引导模型优先选择相关表和字段，提高复杂多表结构下的 SQL 生成稳定性。
         \item \textbf{执行可靠性与自纠错}：引入 SQL 预执行与自纠错机制，在结果输出前先执行校验，捕获 MySQL Error 后回传模型重写，减少错误结果输出与人工介入，提高复杂多表链路下的执行可靠性。
-        \item \textbf{评估体系与指标提升}：构建约 200 条 Golden Dataset，结合 RAGAS 指标、人工反馈 Bad Case 回流，从检索质量与 SQL 生成效果两个维度评估；基于评估结论迭代提示词与检索策略，执行成功率由约 70\% 提升至 90\%+，项目获重庆市人工智能大赛市级银奖。
+        \item \textbf{评估体系与指标提升}：构建约 200 条 Golden Dataset，结合 RAGAS 指标、人工反馈 Bad Case 回流，从检索质量与 SQL 生成效果两个维度评估；基于评估结论迭代提示词与检索策略，执行成功率由约 70\% 提升至 90\%+。
+        % \item \textbf{评估体系与指标提升}：构建约 200 条 Golden Dataset，结合 RAGAS 指标、人工反馈 Bad Case 回流，从检索质量与 SQL 生成效果两个维度评估；基于评估结论迭代提示词与检索策略，执行成功率由约 70\% 提升至 90\%+，项目获重庆市人工智能大赛市级银奖。
     \end{itemize}
 
     % \vspace{0.22em}

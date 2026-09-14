@@ -32,11 +32,14 @@
 
     \section[专业技能]{\makebox[\iconwidth][c]{\color{primarycolor}{\faWrench}}\quad 专业技能}
     \begin{itemize}
-        \item \textbf{前端基础与框架}：熟悉 HTML5、CSS3、JavaScript、TypeScript，掌握 Vue3、Vuex/Pinia、Next.js 等技术栈，能够完成页面组件化开发、状态管理、路由组织与复杂交互实现。
+        \item \textbf{前端基础与框架}：熟悉 HTML5、CSS3、JavaScript、TypeScript，掌握 Vue3、Pinia，具备组件化开发、状态管理、路由组织与复杂交互实现经验；具备 Next.js 数据看板开发实践。
         \item \textbf{组件与可视化}：熟悉 Ant Design Vue、Element 等组件库，能够封装表单、列表、弹窗、搜索筛选等通用业务组件；熟悉 ECharts，可实现基础数据看板与可视化展示。
-        \item \textbf{工程化与联调}：掌握 Git、Docker、Postman、JMeter、FoxAPI 等工具，熟悉前后端接口联调、请求/响应数据排查、环境部署与基础性能测试流程。
-        \item \textbf{后端与数据基础}：了解 Django、SpringBoot、MyBatis 等后端框架，掌握 MySQL、SQLite、Redis 的基本使用，能够参与接口设计、数据库建模和前后端数据流打通。
-        \item \textbf{AI 辅助开发}：熟悉 GitHub Copilot、Claude Code、Codex、Qoder 等 AI 编程工具，能够结合 AI 对话、SSE 流式响应和实时预览能力开发 AI 应用型前端项目。
+        \item \textbf{工程实践与协作}：掌握 Git、Docker、Postman、JMeter、FoxAPI 等工具，熟悉前后端接口联调、请求/响应数据排查、环境部署与基础性能测试流程。了解 SpringBoot、MyBatis 等后端框架，掌握 MySQL、SQLite、Redis 的基本使用，能够参与接口设计、数据库建模和前后端数据流打通。
+        \item \textbf{AI 辅助研发}：熟悉 Claude Code、Codex 等 AI 编程工具，具备 Skill 编排、MCP 服务开发与集成经验，能够结合研发代码上下文开展自动化用例生成与公共方法复用。具备 SSE 流式对话、模型工具调用展示、实时预览与可视化编辑开发经验，使用 \texttt{EventSource}、\texttt{iframe} 与 \texttt{postMessage} 实现相关交互。
+        % \item \textbf{AI 辅助开发}：熟悉 GitHub Copilot、Claude Code、Codex、Qoder 等 AI 编程工具，能够结合 AI 对话、SSE 流式响应和实时预览能力开发 AI 应用型前端项目。
+        
+        
+        
     \end{itemize}
 
     % \vspace{0.45em}
@@ -49,9 +52,9 @@
 
     \projectheading{腾讯云与智慧产业研发公司}{前端开发实习生}{2026.06--2026.09}
     \begin{itemize}
-        \item \textbf{地图数据看板开发}：基于 Next.js 16 与腾讯地图 JSAPI GL 搭建数据看板模板，支撑 LBS 营销场景「需求 → 分析 → 交付」链路的数据呈现。
-        \item \textbf{地图 Web 示例自动化（TypeScript）}：基于 Playwright + TypeScript 构建 JSAPI 地图 demo 与数据可视化示例的维护框架，覆盖 glAPI 129 实例与数据可视化 44 实例；单次截图由 58--103s 降至约 0.6s，130 条回归由 58.8min 降至 43.6min。
-        \item \textbf{H5 发版质量保障}：完成【你用我赔 H5】发版需求测试分析，识别跨天状态机、端外分享、埋点与多端兼容性风险，建立 R1--R8 风险清单。
+        \item \textbf{地图数据看板开发}：基于 Next.js 与腾讯地图 JSAPI GL 开发 LBS 营销数据看板模板，负责地图可视化页面与业务数据展示，支撑业务分析结果交付。
+        \item \textbf{Web 地图前端组件开发与维护}：基于 TypeScript 与腾讯地图 JSAPI GL 开发和维护 Web 地图组件，封装地图初始化、图层渲染与交互事件等通用逻辑，支撑业务数据的地图可视化展示；维护 GL API 与数据可视化示例，完善组件调用、数据展示与交互逻辑。
+        \item \textbf{手机地图H5 }：参与「你用我赔H5」活动页面与业务交互开发，对接后端接口实现活动状态展示与跨天状态更新，接入端外分享及埋点上报；完善移动端布局与多端兼容性适配，支撑 H5 活动上线。
     \end{itemize}
 
     % \vspace{0.25em}
@@ -73,8 +76,10 @@
     \projectheading{地图移动端 GUI 自动化质检 Agent}{参与框架建设}{2026.06--2026.09}
     \begin{itemize}
         \item \textbf{Agent 编排与用例生成}：构建 LLM Agent 质量效能体系，按职责编排 13 个 Skill 与 3 个 MCP 服务，打通「需求 → 自动化用例生成 → 知识沉淀」闭环；联动 TAPD/Figma 自动生成可执行 case.py，单用例生成约 10 分钟（手写需 2 小时），覆盖 17 个业务域、600+ 生成代码单元。
+        % \item \textbf{Agent 编排与工具集成}：参与自动化质检框架建设，编排 13 个 Skill 与 3 个 MCP 服务，联动 TAPD、Figma 生成可执行自动化用例，单用例代码生成耗时约 10 分钟。
         \item \textbf{MCP 工具与多模态感知}：自研设备控制与线上诊断 MCP，并接入地图 MCP 解析坐标构造测试数据；融合四层视觉感知并链式降级，解决自绘控件无 resource-id 的定位问题；scrcpy 长连接投屏将截图耗时从约 1s 降至 50ms。
-        \item \textbf{知识工程与语义检索}：设计页面/组件/坑点/操作四类节点知识图谱，基于 23 个研发仓库 UI 索引做同源静态推理，让 Agent 生成前先读懂研发代码；以 AST 扫描 1500+ 私有 helper，结合 jieba + BM25 实现公共方法语义检索与经验复用。
+        \item \textbf{知识工程与语义检索}：设计页面/组件/坑点/操作四类节点知识图谱，基于 23 个研发仓库 UI 索引做同源静态推理，让 Agent 生成前先读研发代码。 AST 扫描 1500+ 私有 helper，结合 jieba + BM25 实现公共方法语义检索与经验复用。
+        % \item \textbf{代码知识检索与复用}：结合研发仓库 UI 索引与 AST 扫描构建代码知识索引，使用 BM25 实现公共方法检索与经验复用，为 Agent 用例生成提供研发代码上下文。
     \end{itemize}
 
     % \vspace{0.18em}
@@ -91,10 +96,15 @@
 
     \projectheading{智能应用生成平台}{前端开发}{2025.09--2025.12}
     \begin{itemize}
-        \item \textbf{项目目标}：面向非技术用户的 AI 应用生成平台，支持通过多轮 AI 对话生成网站，并提供实时响应式预览与可视化修改能力。
-        \item \textbf{流式交互与预览通信}：采用原生 \texttt{EventSource} 消费后端 SSE 流式接口，实现 AI 对话打字机输出效果，并动态展示模型工具调用轨迹；使用 \texttt{postMessage} 打通主应用与 \texttt{iframe} 预览站点之间的跨域通信，支撑实时预览与编辑状态同步。
-        \item \textbf{可视化编辑与组件复用}：通过向子 \texttt{iframe} 动态注入 DOM 监听脚本，实现“点击即修改”的可视化编辑能力；基于 Ant Design Vue 封装应用卡片、信息弹窗等业务组件，通过 \texttt{props}/\texttt{emits} 进行父子组件通信，提高页面开发复用率。
+        \item \textbf{AI 应用交互开发}：面向非技术用户，开发多轮 AI 对话、响应式网站预览与可视化修改功能，支持通过自然语言生成网站；基于 Ant Design Vue 封装应用卡片、信息弹窗等业务组件。
+        \item \textbf{流式响应与过程反馈}：基于原生 \texttt{EventSource} 对接后端 SSE 接口，实现 AI 响应内容的增量展示，并动态呈现模型工具调用轨迹，向用户反馈网站生成过程。
+        \item \textbf{预览通信与可视化编辑}：通过 \texttt{postMessage} 实现主应用与 \texttt{iframe} 预览页面之间的消息通信，同步预览与编辑状态；在预览页面内接入 DOM 事件监听脚本，实现页面元素点选与可视化修改。
     \end{itemize}
+    % \begin{itemize}
+    %     \item \textbf{项目目标}：面向非技术用户的 AI 应用生成平台，支持通过多轮 AI 对话生成网站，并提供实时响应式预览与可视化修改能力。
+    %     \item \textbf{流式交互与预览通信}：采用原生 \texttt{EventSource} 消费后端 SSE 流式接口，实现 AI 对话打字机输出效果，并动态展示模型工具调用轨迹；使用 \texttt{postMessage} 打通主应用与 \texttt{iframe} 预览站点之间的跨域通信，支撑实时预览与编辑状态同步。
+    %     \item \textbf{可视化编辑与组件复用}：通过向子 \texttt{iframe} 动态注入 DOM 监听脚本，实现“点击即修改”的可视化编辑能力；基于 Ant Design Vue 封装应用卡片、信息弹窗等业务组件，通过 \texttt{props}/\texttt{emits} 进行父子组件通信，提高页面开发复用率。
+    % \end{itemize}
 
     % \vspace{0.25em}
     % \projectheading{校园二手交易平台}{项目负责人}{2025.03--2025.06}
@@ -107,12 +117,25 @@
 
     \vspace{0.18em}
 
-    \projectheading{基于 RAG 的医药数据分析问数 Agent}{项目主要成员}{2025.10--2026.02}
+    % \projectheading{基于 RAG 的医药数据分析问数 Agent}{项目主要成员}{2025.10--2026.02}
+    % \begin{itemize}
+    %     \item \textbf{项目目标}：面向药品采购、零售、库存等全链路数据及 800 余张业务表，建设 LLM 数据分析问答助手，将业务人员的自然语言问题转化为可执行 SQL 与可读分析结论。
+    %     \item \textbf{链路设计}：负责 LLM 应用核心链路设计，打通「问题理解 → Schema 检索 → SQL 生成 → 结果解释 → 人工反馈」业务流程；聚焦结果解读与人工反馈环节的落地，降低业务人员直接理解复杂数据库结构的门槛。
+    %     \item \textbf{结果可视化与 AI 报表}：负责问数结果的前端可视化呈现与 AI 报表输出，将查询结果转化为可视化图表与结构化报表；针对采购、零售、库存等业务场景设计数据看板与可视化大屏，支撑业务人员直观解读分析结论。
+    %     \item \textbf{评估与自修正闭环}：引入 SQL 预执行与自纠错机制，捕获 MySQL Error 后回传模型重写；构建约 200 条 Golden Dataset，结合 RAGAS 指标、人工反馈 Bad Case 回流评估检索与 SQL 效果，执行成功率由约 70\% 提升至 90\%+，项目获重庆市人工智能大赛市级银奖。
+    % \end{itemize}
+    
+    % \vspace{0.18em}
+    
+    \projectheading{医药智能问数与数据可视化平台}{项目主要成员}{2025.10--2026.02}
     \begin{itemize}
-        \item \textbf{项目目标}：面向药品采购、零售、库存等全链路数据及 800 余张业务表，建设 LLM 数据分析问答助手，将业务人员的自然语言问题转化为可执行 SQL 与可读分析结论。
-        \item \textbf{链路设计}：负责 LLM 应用核心链路设计，打通「问题理解 → Schema 检索 → SQL 生成 → 结果解释 → 人工反馈」业务流程；聚焦结果解读与人工反馈环节的落地，降低业务人员直接理解复杂数据库结构的门槛。
-        \item \textbf{结果可视化与 AI 报表}：负责问数结果的前端可视化呈现与 AI 报表输出，将查询结果转化为可视化图表与结构化报表；针对采购、零售、库存等业务场景设计数据看板与可视化大屏，支撑业务人员直观解读分析结论。
-        \item \textbf{评估与自修正闭环}：引入 SQL 预执行与自纠错机制，捕获 MySQL Error 后回传模型重写；构建约 200 条 Golden Dataset，结合 RAGAS 指标、人工反馈 Bad Case 回流评估检索与 SQL 效果，执行成功率由约 70\% 提升至 90\%+，项目获重庆市人工智能大赛市级银奖。
+        \item \textbf{前端页面与问数交互}：基于 Vue3 + TypeScript + Ant Design Vue 开发自然语言问数、结果展示与人工反馈页面，组织问题输入、查询状态、可视化图表与 AI 分析结论，支持业务人员完成「提问 → 分析 → 反馈」交互流程。
+    
+        \item \textbf{ECharts 图表组件封装}：围绕采购、零售、库存场景，封装柱状图、折线图等可复用图表组件，通过 \texttt{props} 接收业务数据与展示配置，结合 \texttt{watch} 与 \texttt{setOption} 实现数据更新；处理图表容器尺寸变化与实例销毁，支持看板响应式展示。
+    
+        \item \textbf{动态数据适配与报表展示}：对接 800 余张业务表的 RAG 问数链路，封装查询结果的字段映射与数据转换逻辑，将维度、指标适配为图表配置和表格数据，统一呈现趋势图表与结构化报表；完善加载、空数据及查询异常状态展示。
+    
+        \item \textbf{AI 链路与质量评估}：参与 Schema 检索、SQL 生成与结果解释链路建设，引入 SQL 预执行和错误反馈重写机制；构建含约 200 条样本的评估集，结合页面人工反馈与 Bad Case 回流，推动 SQL 执行成功率由约 70\% 提升至 90\%+。
     \end{itemize}
 
     % \vspace{0.45em}
@@ -125,6 +148,7 @@
     \begin{itemize}
         % \item \textbf{证书}：CET-6
         \item \textbf{竞赛}：2025 “互联网+”大学生创新创业大赛银奖；2025 首届重庆市 AI 大模型创新应用大赛省级三等奖；2023 第十四届蓝桥杯 C/C++ 组省赛三等奖；2023 重庆市高校数据库应用竞赛校级二等奖
+        \item \textbf{论文}：《LHAF: A Lightweight Hierarchical Adaptive Framework for LLM-based Multimodal Emotion Recognition in Conversations》（SCI I 区在投）
     \end{itemize}
 
 \end{document}

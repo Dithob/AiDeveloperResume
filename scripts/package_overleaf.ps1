@@ -10,7 +10,7 @@
       - images\  页眉、照片、校徽等图片素材
       - latexmkrc            Overleaf 专用最小配置（强制 XeLaTeX 引擎）
       - README-Overleaf.txt  导入说明
-    刻意排除 script\（本地编译/打包脚本）、reference\、skills\、docs\ 与全部编译产物。
+    刻意排除 scripts\（本地编译/打包脚本）、reference\、skills\、docs\ 与全部编译产物。
     仓库自带的 .latexmkrc（面向本地 latexmk：输出重定向到 .output\ 并给 PDF 改名）不打包，
     改为生成一个 Overleaf 专用最小 latexmkrc，强制使用 XeLaTeX（Overleaf 默认 pdfLaTeX 无法编译本模板）。
 
@@ -26,9 +26,9 @@
     zip 输出目录，默认 <仓库根>\overleaf。
 
 .EXAMPLE
-    powershell -NoProfile -ExecutionPolicy Bypass -File .\script\package_overleaf.ps1
-    powershell -NoProfile -ExecutionPolicy Bypass -File .\script\package_overleaf.ps1 -Template backend
-    powershell -NoProfile -ExecutionPolicy Bypass -File .\script\package_overleaf.ps1 -Template algorithm -Sanitize
+    powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\package_overleaf.ps1
+    powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\package_overleaf.ps1 -Template backend
+    powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\package_overleaf.ps1 -Template algorithm -Sanitize
 
 .NOTES
     默认打包 tex\data\ 下的真实个人信息与真实照片，生成的 zip 请勿随意传播；
@@ -158,7 +158,7 @@ AiDeveloperResume - Overleaf 导入说明
   - 本说明文件
 
 二、刻意排除（避免干扰 Overleaf 或带入无关内容）
-  script\（本地编译/打包脚本）、reference\、skills\、docs\、.git 及编译产物等。
+  scripts\（本地编译/打包脚本）、reference\、skills\、docs\、.git 及编译产物等。
   仓库自带的 .latexmkrc（面向本地 latexmk：输出重定向到 .output\ 并给 PDF 加日期后缀）不打包——
   它会干扰 Overleaf 预览；取而代之的是本包根目录一个 Overleaf 专用最小 latexmkrc（强制 XeLaTeX）。
 
