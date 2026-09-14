@@ -30,7 +30,7 @@ main_*.tex（主稿，唯一编辑入口）
 | 项目 | 首选岗位 | 次选岗位 |
 | --- | --- | --- |
 | [LLM Agent 质量效能工程](ai-application/agent_qa.md) | 测开、AI 应用开发 / AI Agent | AI 工程、后端（AI Agent 经验） |
-| [基于 RAG 的医药数据分析问答助手](ai-application/medical_rag.md) | AI 应用开发、算法（NLP） | 后端（RAG / Text-to-SQL）、数据分析 |
+| [基于 RAG 的医药数据分析问答助手](ai-application/medical_rag.md) | AI 应用开发、算法（NLP） | 后端（RAG / Text-to-SQL）、数据分析、前端（AI 产品前端） |
 | [多模态家电识别与知识库入库系统](ai-application/homeappliance.md) | AI 应用开发、多模态 | 后端（服务封装 / vLLM）、算法（多模态） |
 | [汽车配件表格问答系统](ai-application/autoparts_sql.md) | 算法（LLM 微调 / RL）、AI 应用开发 | NLP 算法、大模型应用工程师 |
 | [智能填表系统](ai-application/form_fill.md) | AI 应用开发 / RAG、算法（检索） | 后端（RAG / 向量检索） |
@@ -54,7 +54,7 @@ main_*.tex（主稿，唯一编辑入口）
 | **AI 应用开发** | agent_qa、medical_rag、homeappliance、form_fill、air_quality、guide_car | autoparts_sql、map_ui_auto、video_understanding、ai_app_gen |
 | **算法** | video_understanding、collection_ml、autoparts_sql | medical_rag、form_fill、air_quality、guide_car、homeappliance |
 | **后端** | wheat_ticket、daily_shop、realtime_order | homeappliance、medical_rag、form_fill、continuous_test |
-| **前端** | cloud_image、ai_app_gen、campus_secondhand | — |
+| **前端** | cloud_image、ai_app_gen、campus_secondhand | medical_rag |
 | **全栈** | wheat_ticket、daily_shop、cloud_image、ai_app_gen | realtime_order、campus_secondhand、continuous_test |
 | **测开** | continuous_test、map_ui_auto、agent_qa | — |
 
